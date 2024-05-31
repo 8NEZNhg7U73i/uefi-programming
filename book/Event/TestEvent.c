@@ -27,9 +27,9 @@ EFI_STATUS testTimeOut()
     if(EFI_SUCCESS == Status)
     {
         if(EventIndex == 0){
-            //¼üÅÌÓÐÊäÈë
+            //é”®ç›˜æœ‰è¾“å…¥
         }else if(EventIndex == 1){
-            // 1 ÃëÄÚÎÞ¼üÅÌ²Ù×÷
+            // 1 ç§’å†…æ— é”®ç›˜æ“ä½œ
             Print(L"You don't input any key in 1 seconds!" );
         }
     }
@@ -142,12 +142,12 @@ EFI_STATUS TestEventSingal()
     EFI_STATUS  Status;
     EFI_EVENT myEvent;
     Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL");
-    // Éú³ÉTimerÊÂ¼þ£¬²¢ÉèÖÃ´¥·¢º¯Êý
+    // ç”ŸæˆTimeräº‹ä»¶ï¼Œå¹¶è®¾ç½®è§¦å‘å‡½æ•°
     Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_CALLBACK, (EFI_EVENT_NOTIFY)myEventNoify30, (VOID*)L"Hello! Time Out!", &myEvent);
     if (EFI_ERROR(Status)) {
         Print(L"TestEventSignal: CreateEvent error %d!\n", Status);
     }
-    // ÉèÖÃTimerµÈ´ýÊ±¼äÎª10Ãë£¬ÊôÐÔÎªÑ­»·µÈ´ý
+    // è®¾ç½®Timerç­‰å¾…æ—¶é—´ä¸º10ç§’ï¼Œå±žæ€§ä¸ºå¾ªçŽ¯ç­‰å¾…
     Status = gBS->SetTimer(myEvent,TimerPeriodic , 10 * 1000 * 1000);
     if (EFI_ERROR(Status)) {
         Print(L"TestEventSignal: SetTimer error %d!\n", Status);
@@ -170,9 +170,9 @@ testMouseSimple()
     EFI_SIMPLE_POINTER_PROTOCOL* mouse = 0;
     EFI_SIMPLE_POINTER_STATE     State;
     EFI_EVENT events[2]; // = {0, gST->ConIn->WaitForKey};
-    //ÏÔÊ¾¹â±ê
+    //æ˜¾ç¤ºå…‰æ ‡
     gST->ConOut->EnableCursor (gST->ConOut, TRUE);
-    //ÕÒ³öÊó±êÉè±¸
+    //æ‰¾å‡ºé¼ æ ‡è®¾å¤‡
     Status = gBS->LocateProtocol(
             &gEfiSimplePointerProtocolGuid,
             NULL,
@@ -181,20 +181,20 @@ testMouseSimple()
     if (EFI_ERROR(Status)) {
         Print(L"testMouseSimple: LocateProtocol error %d!\n", Status);
     }
-    // ÖØÖÃÊó±êÉè±¸
+    // é‡ç½®é¼ æ ‡è®¾å¤‡
     Status = mouse->Reset(mouse, TRUE);
-    // ½«Êó±êÊÂ¼þ·Åµ½µÈ´ýÊÂ¼þÊý×é
+    // å°†é¼ æ ‡äº‹ä»¶æ”¾åˆ°ç­‰å¾…äº‹ä»¶æ•°ç»„
     events[0] = mouse->WaitForInput;
-    // ½«¼üÅÌÊÂ¼þ·Åµ½µÈ´ýÊý×é
+    // å°†é”®ç›˜äº‹ä»¶æ”¾åˆ°ç­‰å¾…æ•°ç»„
     events[1] = gST->ConIn->WaitForKey;
     while(1)
     {
         EFI_INPUT_KEY	   Key;
         UINTN index;
-        // µÈ´ýeventsÖÐµÄÈÎÒ»ÊÂ¼þ·¢Éú
+        // ç­‰å¾…eventsä¸­çš„ä»»ä¸€äº‹ä»¶å‘ç”Ÿ
         Status = gBS->WaitForEvent(2, events, &index);
         if(index == 0){
-            // »ñÈ¡Êó±ê×´Ì¬²¢Êä³ö
+            // èŽ·å–é¼ æ ‡çŠ¶æ€å¹¶è¾“å‡º
             Status = mouse->GetState(mouse, &State);
             Print(L"X:%d Y:%d Z:%d L:%d R:%d\n",
                 State.RelativeMovementX,
@@ -205,7 +205,7 @@ testMouseSimple()
                 );
         } else{            
             Status = gST->ConIn->ReadKeyStroke (gST->ConIn, &Key);
-            // °´¡¯q¡¯¼üÍË³ö
+            // æŒ‰â€™qâ€™é”®é€€å‡º
             if (Key.UnicodeChar == 'q')
                 break;
         }
