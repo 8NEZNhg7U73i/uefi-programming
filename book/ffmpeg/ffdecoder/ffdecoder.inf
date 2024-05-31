@@ -35,7 +35,7 @@
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   ShellPkg/ShellPkg.dec
-  ffmpeg/ffmpeg.dec
+  DcsPkg/uefi-programming/book/ffmpeg/ffmpeg.dec
   StdLibPrivateInternalFiles/DoNotUse.dec
 
 [LibraryClasses]
