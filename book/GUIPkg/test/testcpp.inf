@@ -27,7 +27,7 @@
 [Packages]
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  uefi/CppPkg/CppPkg.dec 
+  DcsPkg/uefi-programming/book/CppPkg/CppPkg.dec 
   StdLib/StdLib.dec
 
 [LibraryClasses]
