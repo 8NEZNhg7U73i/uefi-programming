@@ -51,7 +51,7 @@ gzwrite.c
 [Packages]
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  ffmpeg/ffmpeg.dec
+  DcsPkg/uefi-programming/book/ffmpeg/ffmpeg.dec
   StdLib/StdLib.dec
 
 
