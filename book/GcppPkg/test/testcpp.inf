@@ -20,6 +20,8 @@
   MODULE_TYPE                    = UEFI_APPLICATION
   ENTRY_POINT                    = ShellCEntryLib
 
+  DEFINE UEFI_BOOK_DIR            = DcsPkg/uefi-programming/book
+
 [Sources]
   #crtend.c
   testcpp.cpp
