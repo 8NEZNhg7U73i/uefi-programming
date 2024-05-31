@@ -13,7 +13,7 @@
 [Packages]
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  uefi/book/sstdPkg/sstd.dec
+  DcsPkg/uefi-programming/book/sstdPkg/sstd.dec
 [LibraryClasses]
   UefiApplicationEntryPoint
   UefiBootServicesTableLib
