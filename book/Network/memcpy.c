@@ -8,7 +8,6 @@ typedef UINTN size_t;
 #endif
 
 #ifndef __GNUC__
-#pragma function(memcpy)
 #endif
 /*
 void * memcpy ( void * dest, const void * source, size_t count)
