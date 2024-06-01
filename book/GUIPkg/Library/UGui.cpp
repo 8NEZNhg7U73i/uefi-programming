@@ -86,8 +86,8 @@ static struct{
     {0xFF,0x00,0x00,0x00},// Fore
     {0xEE,0xEE,0xFF,0x00},// Back
     EFI_FONT_INFO_ANY_FONT,
-    {EFI_HII_FONT_STYLE_SHADOW, 0, L'¿¬'}
-}, {L'Ìå', 0}};
+    {EFI_HII_FONT_STYLE_SHADOW, 0, L'æ¥·'}
+}, {L'ä½“', 0}};
 
 EFI_FONT_DISPLAY_INFO& gDefaultFont = iRealDontWanttoNameit.noname;
 
@@ -469,10 +469,10 @@ void StringBrick::DrawTo(void* pFrameBuffer, UINT32 ToScreen)
     if(gHiiFont ==NULL) {
         return;
     }
-    // ¸²¸ÇÔ­À´µÄÎÄ×Ö
+    // è¦†ç›–åŽŸæ¥çš„æ–‡å­—
     // UEFI_PIXEL WhitePix = {0xEE,0xEE,0xEE,0};
     // Clear(WhitePix);
-    //! ÐÂÎÄ×Ö
+    //! æ–°æ–‡å­—
     Status = gHiiFont->StringToImage (
             gHiiFont,
             EFI_HII_IGNORE_IF_NO_GLYPH | EFI_HII_OUT_FLAG_CLIP |
