@@ -162,7 +162,7 @@ EFI_STATUS TestReadBlocks2( EFI_BLOCK_IO2_PROTOCOL* BlockIo2)
     SAFECALL(Status = gBS->AllocatePool(EfiBootServicesCode, BlockSize, (VOID**)&Buf));
     Status = BlockIo2->ReadBlocksEx(BlockIo2, BlockIo2->Media->MediaId, 0, &b2Token, BlockSize, (VOID**)Buf);
     if(EFI_ERROR(Status)){
-        //处理错误
+        //澶勭悊閿欒
     }else{
         gBS->WaitForEvent(1, &b2Token.Event, &Index);
     }
@@ -190,7 +190,7 @@ EFI_STATUS TestReadBlocks2Signal( EFI_BLOCK_IO2_PROTOCOL* BlockIo2)
     SAFECALL(Status = gBS->AllocatePool(EfiBootServicesCode, BlockSize, (VOID**)&Buf));
     Status = BlockIo2->ReadBlocksEx(BlockIo2, BlockIo2->Media->MediaId, 0, &b2Token, BlockSize, (VOID**)Buf);
     if(EFI_ERROR(Status)){
-        //处理错误
+        //澶勭悊閿欒
         SAFECALL(Status = gBS->FreePool(Buf));
     }else{
     }
@@ -208,7 +208,7 @@ EFI_STATUS TestReadDisk2( EFI_DISK_IO2_PROTOCOL* DiskIo2, UINT32 MediaId)
     SAFECALL(Status = gBS->AllocatePool(EfiBootServicesCode, BufSize, (VOID**)&Buf));
     Status = DiskIo2->ReadDiskEx(DiskIo2, MediaId, 0, &d2Token, BufSize, (VOID**)Buf);
     if(EFI_ERROR(Status)){
-        //处理错误
+        //澶勭悊閿欒
     }else{
         gBS->WaitForEvent(1, &d2Token.Event, &Index);
     }
