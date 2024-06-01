@@ -11,7 +11,7 @@ extern "C"{
 #include <Library/UefiBootServicesTableLib.h>
 #include <Protocol/LoadedImage.h>
 #include <Protocol/EfiShellInterface.h> 
-#include <Protocol/EfiShellParameters.h>
+#include <Protocol/ShellParameters.h>
 #include <Protocol/SimpleFileSystem.h>
 #include <Library/MemoryAllocationLib.h>
 
