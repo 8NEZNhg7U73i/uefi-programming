@@ -2,8 +2,8 @@
 
 [Defines]
   INF_VERSION                    = 0x00010005
-  BASE_NAME                      = testsstd
-  FILE_GUID                      = 6987936E-ED34-54db-AE97-1FA5E4ED2127
+  BASE_NAME                      = stdtestsstd
+  FILE_GUID                      = 810c497c-3cc2-4af2-9540-50a3829a64b9
   MODULE_TYPE                    = UEFI_APPLICATION
   VERSION_STRING                 = 1.0
   ENTRY_POINT                    = UefiMain
