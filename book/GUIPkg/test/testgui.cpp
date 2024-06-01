@@ -27,7 +27,7 @@ extern "C"{
 #include <IndustryStandard/Pci22.h>
 #include <Protocol/LoadedImage.h>
 #include <Protocol/EfiShellInterface.h>
-#include <Protocol/EfiShellParameters.h>
+#include <Protocol/ShellParameters.h>
 EFI_GRAPHICS_OUTPUT_PROTOCOL         *GraphicsOutput;
 #ifdef __cplusplus
 }
