@@ -1,7 +1,7 @@
 [Defines]
   INF_VERSION                    = 0x00010006
   BASE_NAME                      = ShellAppMain
-  FILE_GUID                    = 4ea97c46-7491-4dfd-b442-747010f3ce5f
+  FILE_GUID                    = 0f001d99-8df8-40dd-bba1-1d13ad7aca7e
   MODULE_TYPE                   = UEFI_APPLICATION
   VERSION_STRING               = 0.1
   ENTRY_POINT                    = ShellCEntryLib

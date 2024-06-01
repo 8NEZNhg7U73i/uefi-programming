@@ -1,7 +1,7 @@
 [Defines]
   INF_VERSION                    = 0x00010006
-  BASE_NAME                      = TestGpt 
-  FILE_GUID                      = 4ea97c46-7491-4dfd-b442-747010f3ce5f
+  BASE_NAME                      = TestGpt1 
+  FILE_GUID                      = 9df98eaa-7386-41ca-a3c4-b7714e533e8a
   MODULE_TYPE                    = UEFI_APPLICATION
   VERSION_STRING                 = 0.1
   ENTRY_POINT                    = UefiMain 

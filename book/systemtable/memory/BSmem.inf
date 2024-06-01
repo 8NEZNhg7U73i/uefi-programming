@@ -1,7 +1,7 @@
 [Defines]
   INF_VERSION                    = 0x00010006
   BASE_NAME                      = BSmem 
-  FILE_GUID                    = 4ea97c46-7491-4dfd-b442-747010f3ce5f
+  FILE_GUID                    = 1648884a-fb9d-430a-b95c-1ed6e6773628
   MODULE_TYPE                   = UEFI_APPLICATION
   VERSION_STRING               = 0.1
   ENTRY_POINT                    = UefiMain 
