@@ -144,7 +144,7 @@ myEventNoify30 (
 EFI_STATUS TestEventSingal()
 {
     EFI_STATUS Status;
-    EFI_EVENT myEvent[1];
+    EFI_EVENT myEvent[2];
     myEvent[1] = gST->ConIn->WaitForKey;
 
     volatile CHAR16 NotifyContext[64] = L"Hello! Time Out!";
