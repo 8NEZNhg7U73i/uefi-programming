@@ -46,7 +46,7 @@ void WaitKey()
     EFI_STATUS   Status = 0;
     UINTN        Index=0;
     EFI_INPUT_KEY  Key;
-    while(1){
+    //while(1){
         Status = gBS->WaitForEvent(1, &gST->ConIn->WaitForKey, &Index);
         if (EFI_ERROR(Status)) {
             Print(L"WaitKey: WaitForEvent Error!\n");
@@ -59,7 +59,7 @@ void WaitKey()
             Print(L"ScanCode: %d", Key.ScanCode);
             Print(L"UnicodeChar: %s", Key.UnicodeChar);
         }
-    }
+    //}
 }
 
 /** example 2
