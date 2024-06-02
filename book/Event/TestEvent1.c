@@ -45,7 +45,7 @@ void printchar(){
 
 EFI_STATUS Status;
 EFI_SIMPLE_TEXT_INPUT_PROTOCOL                      *SimpleInput;
-int count=0;
+int count = 0;
 
 EFI_STATUS EFIAPI
 UefiMain(
