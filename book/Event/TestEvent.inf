@@ -57,3 +57,7 @@
   gEfiFileInfoGuid
 
 [BuildOptions]
+
+[Depex]
+  gEfiSimpleTextInProtocolGuid
+
