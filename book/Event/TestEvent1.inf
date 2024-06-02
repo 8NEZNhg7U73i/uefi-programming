@@ -15,7 +15,7 @@
 #
 
 [Sources]  
-  TestEvent.c
+  TestEvent1.c
 [Packages]
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
