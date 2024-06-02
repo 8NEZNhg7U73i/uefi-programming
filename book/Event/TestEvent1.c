@@ -16,7 +16,7 @@ void printchar(){
     &(SimpleInput->WaitForKey),
     &index
   )
-}
+};
 
 EFI_STATUS
 KeyboardCheckForKey (
