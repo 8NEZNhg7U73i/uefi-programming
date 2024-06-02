@@ -50,24 +50,13 @@ UefiMain(
       SimpleInput,                 // NotifyContext
       &(SimpleInput->WaitForKey) // Event
   );
-  if (EFI_ERROR(Status))
-  {
-    Print(L"Status: %r", Status);
-    return Status;
-  }
+  Print(L"Status: %r", Status);
+  return Status;
+
 
   //
   // Close the wait event
   //
-  Status = gBS->CloseEvent(SimpleInput->WaitForKey);
-  if (EFI_ERROR(Status))
-  {
-    Print(L"Status: %r", Status);
-    return Status;
-  }
-  else
-  {
-    Print(L"Status: %r", Status);
-    return Status;
-  }
+  //Status = gBS->CloseEvent(SimpleInput->WaitForKey);
+
 }
