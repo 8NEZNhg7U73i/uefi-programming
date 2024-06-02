@@ -25,13 +25,27 @@ NotifyKeyboardCheckForKey (
 {
   EFI_SIMPLE_TEXT_INPUT_PROTOCOL                    *SimpleInput;
   SimpleInput = (EFI_SIMPLE_TEXT_INPUT_PROTOCOL   *)Context;
+  
   if (!EFI_ERROR (KeyboardCheckForKey ())) {
     gBS->SignalEvent (SimpleInput->WaitForKey);
   }
+  count += 1;
+  Print(L"count: %d", count);
+}
+
+void printchar(){
+  EFI_EVENT event;
+  int index;
+  Status = gBS->WaitForEvent(
+    1,
+    &(SimpleInput->WaitForKey),
+    &index
+  )
 }
 
 EFI_STATUS Status;
 EFI_SIMPLE_TEXT_INPUT_PROTOCOL                      *SimpleInput;
+int count=0;
 
 EFI_STATUS EFIAPI
 UefiMain(
