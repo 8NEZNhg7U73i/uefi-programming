@@ -1,6 +1,8 @@
 #include <Uefi.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include <Protocol/SimpleTextIn.h>
+#include <Library/UefiLib.h>
+
 
 EFI_STATUS
 KeyboardCheckForKey (
