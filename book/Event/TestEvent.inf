@@ -29,7 +29,7 @@
   UefiBootServicesTableLib
   UefiRuntimeServicesTableLib
   BaseMemoryLib
-
+  
 [Protocols]
   gEfiUnicodeCollation2ProtocolGuid                       # ALWAYS_CONSUMED
   gEfiDevicePathProtocolGuid                              # ALWAYS_CONSUMED
