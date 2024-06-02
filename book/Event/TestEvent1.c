@@ -16,7 +16,7 @@ EFI_STATUS printchar(){
     &(SimpleInput->WaitForKey),
     &index
   );
-  return EFI_SUCCESS;
+  return Status;
 };
 
 EFI_STATUS
@@ -44,7 +44,7 @@ NotifyKeyboardCheckForKey (
     gBS->SignalEvent (SimpleInput->WaitForKey);
   }
   count += 1;
-  Print(L"count: %d", count);
+  Print(L"count: %d\n", count);
 }
 
 EFI_STATUS EFIAPI
