@@ -56,8 +56,8 @@ void WaitKey()
             Print(L"WaitKey: ReadKeyStroke Error!\n");
         }
         else {
-            Print(L"ScanCode: %d", Key.ScanCode);
-            Print(L"UnicodeChar: %s", Key.UnicodeChar);
+            Print(L"ScanCode: %d\n", Key.ScanCode);
+            Print(L"UnicodeChar: %s\n", Key.UnicodeChar);
         }
     //}
 }
