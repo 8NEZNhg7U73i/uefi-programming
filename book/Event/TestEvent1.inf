@@ -4,7 +4,7 @@
   INF_VERSION                    = 0x00010005
   BASE_NAME                      = testEvent1 
   FILE_GUID                      = 4c38032d-bde5-4f45-8256-72ef0d4a2b4d
-  MODULE_TYPE                    = UEFI_APPLICATION
+  MODULE_TYPE                    = DXE_DRIVER
   VERSION_STRING                 = 1.0
   ENTRY_POINT                    = UefiMain
 
@@ -46,7 +46,7 @@
   gEfiSimplePointerProtocolGuid
   gEfiSimpleTextInputExProtocolGuid
   gEfiSimpleTextInProtocolGuid
-  
+
 [FeaturePcd]
 
 [Pcd.common]
