@@ -152,8 +152,8 @@ EFI_STATUS TestEventSingal()
     if (EFI_ERROR(Status)) {
         Print(L"TestEventSignal: SetTimer error %d!\n", Status);
     }
-    WaitKey();
-    Status = gBS->CloseEvent(myEvent);
+    //WaitKey();
+    //Status = gBS->CloseEvent(myEvent);
     if (EFI_ERROR(Status)) {
         Print(L"TestEventSignal: CloseEvent error %d!\n", Status);
     }
