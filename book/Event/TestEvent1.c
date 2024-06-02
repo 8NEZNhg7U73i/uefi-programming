@@ -60,10 +60,12 @@ UefiMain(
   Status = gBS->CloseEvent(SimpleInput->WaitForKey);
   if (EFI_ERROR(Status))
   {
+    Print(L"Status: %r", Status);
     return Status;
   }
   else
   {
+    Print(L"Status: %r", Status);
     return Status;
   }
 }
