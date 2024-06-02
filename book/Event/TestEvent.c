@@ -140,7 +140,7 @@ myEventNoify30 (
 EFI_STATUS TestEventSingal()
 {
     EFI_STATUS  Status;
-    EFI_EVENT myEvent = gST->ConIn->WaitForKey;
+    EFI_EVENT myEvent = SimpleInput->WaitForKey;
     //char empty;
 
     Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL");
