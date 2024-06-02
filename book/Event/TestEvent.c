@@ -146,8 +146,8 @@ EFI_STATUS TestEventSingal()
     EFI_STATUS Status;
     EFI_EVENT myEvent[2]={0};
     myEvent[1] = gST->ConIn->WaitForKey;
-
-    volatile CHAR16 NotifyContext[64] = L"Hello! Time Out!";
+    
+    CHAR16 NotifyContext[64] = L"Hello! Time Out!";
     Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL\n");
 
     // 生成Timer事件，并设置触发函数
