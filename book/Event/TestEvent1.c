@@ -15,7 +15,7 @@ void printchar(){
     1,
     &(SimpleInput->WaitForKey),
     &index
-  )
+  );
 };
 
 EFI_STATUS
