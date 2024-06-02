@@ -155,7 +155,7 @@ EFI_STATUS TestEventSingal()
     //WaitKey();
     //Status = gBS->CloseEvent(myEvent);
     if (EFI_ERROR(Status)) {
-        Print(L"TestEventSignal: CloseEvent error %d!\n", Status);
+        Print(L"TestEventSignal: CloseEvent error %r!\n", Status);
     }
     return EFI_SUCCESS;
 }
