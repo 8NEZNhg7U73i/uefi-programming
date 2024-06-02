@@ -11,6 +11,7 @@
 #include <Protocol/AbsolutePointer.h>
 #include <Protocol/SimpleTextInEx.h>
 
+EFI_SIMPLE_TEXT_INPUT_PROTOCOL                      *SimpleInput;
 
 /** example  
  *
