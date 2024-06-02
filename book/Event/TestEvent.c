@@ -41,12 +41,12 @@ EFI_STATUS testTimeOut()
 /** example 1
  *
  */
-void WaitKey()
+void *WaitKey()
 {
-    EFI_STATUS   Status = 0;
+    EFI_STATUS   Status;
     UINTN        Index=0;
     EFI_INPUT_KEY  Key;
-    //while(1){
+    while(1){
         Status = gBS->WaitForEvent(1, &gST->ConIn->WaitForKey, &Index);
         if (EFI_ERROR(Status)) {
             Print(L"WaitKey: WaitForEvent Error!\n");
@@ -59,7 +59,7 @@ void WaitKey()
             Print(L"ScanCode: %d\n", Key.ScanCode);
             Print(L"UnicodeChar: %s\n", Key.UnicodeChar);
         }
-    //}
+    }
 }
 
 /** example 2
@@ -163,7 +163,7 @@ EFI_STATUS TestEventSingal()
         Print(L"TestEventSignal: SetTimer error %d!\n", Status);
     }
     */
-    WaitKey();
+    &WaitKey();
     //Status = gBS->CloseEvent(myEvent);
     if (EFI_ERROR(Status)) {
         Print(L"TestEventSignal: CloseEvent error %r!\n", Status);
