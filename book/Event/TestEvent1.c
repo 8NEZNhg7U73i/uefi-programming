@@ -50,6 +50,7 @@ UefiMain(
   );
   if (EFI_ERROR(Status))
   {
+    Print(L"Status: %r", Status);
     return Status;
   }
 
