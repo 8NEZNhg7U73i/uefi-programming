@@ -42,7 +42,7 @@ EFI_STATUS testTimeOut()
  */
 void WaitKey()
 {
-    EFI_STATUS   Status = 0;
+    EFI_STATUS   Status;
     UINTN        Index=0;
     EFI_INPUT_KEY  Key;
 
@@ -145,7 +145,7 @@ EFI_STATUS TestEventSingal()
     // 生成Timer事件，并设置触发函数
     Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_CALLBACK, (EFI_EVENT_NOTIFY)myEventNoify30, (VOID*)L"Hello! Time Out!", &myEvent);
     if (EFI_ERROR(Status)) {
-        Print(L"TestEventSignal: CreateEvent error %d!\n", Status);
+        Print(L"TestEventSignal: CreateEvent error %r!\n", Status);
     }
     // 设置Timer等待时间为10秒，属性为循环等待
     Status = gBS->SetTimer(myEvent,TimerPeriodic , 10 * 1000 * 1000);
