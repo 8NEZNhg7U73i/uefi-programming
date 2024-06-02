@@ -4,6 +4,20 @@
 #include <Library/UefiLib.h>
 
 
+void printchar(){
+  EFI_EVENT event;
+  int index;
+  Status = gBS->WaitForEvent(
+    1,
+    &(SimpleInput->WaitForKey),
+    &index
+  )
+}
+
+EFI_STATUS Status;
+EFI_SIMPLE_TEXT_INPUT_PROTOCOL                      *SimpleInput;
+int count = 0;
+
 EFI_STATUS
 KeyboardCheckForKey (
    VOID
@@ -32,20 +46,6 @@ NotifyKeyboardCheckForKey (
   count += 1;
   Print(L"count: %d", count);
 }
-
-void printchar(){
-  EFI_EVENT event;
-  int index;
-  Status = gBS->WaitForEvent(
-    1,
-    &(SimpleInput->WaitForKey),
-    &index
-  )
-}
-
-EFI_STATUS Status;
-EFI_SIMPLE_TEXT_INPUT_PROTOCOL                      *SimpleInput;
-int count = 0;
 
 EFI_STATUS EFIAPI
 UefiMain(
