@@ -65,6 +65,7 @@ UefiMain(
       &(SimpleInput->WaitForKey) // Event
   );
   Print(L"Status: %r", Status);
+  printchar();
   return Status;
 
 
