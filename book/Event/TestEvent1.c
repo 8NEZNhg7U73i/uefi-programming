@@ -9,7 +9,7 @@ EFI_SIMPLE_TEXT_INPUT_PROTOCOL                      *SimpleInput;
 int count = 0;
 
 void printchar(){
-  EFI_EVENT event;
+  //EFI_EVENT event;
   UINTN index;
   Status = gBS->WaitForEvent(
     1,
