@@ -156,8 +156,9 @@ EFI_STATUS TestEventSingal()
         Print(L"TestEventSignal: CreateEvent error %r!\n", Status);
     }
     // 设置Timer等待时间为10秒，属性为循环等待
-    Status = gBS->SetTimer(myEvent[0],TimerPeriodic , 10 * 1000 * 1000);
-    if (EFI_ERROR(Status)) {
+    Status = gBS->SetTimer(myEvent[0], TimerPeriodic, 10 * 1000 * 1000);
+    if (EFI_ERROR(Status))
+    {
         Print(L"TestEventSignal: SetTimer error %r!\n", Status);
     }
     //WaitKey();
