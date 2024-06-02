@@ -179,7 +179,7 @@ testMouseSimple()
             (VOID**)&mouse
             );
     if (EFI_ERROR(Status)) {
-        Print(L"testMouseSimple: LocateProtocol error %d!\n", Status);
+        Print(L"testMouseSimple: LocateProtocol error %r!\n", Status);
     }
     // 重置鼠标设备
     Status = mouse->Reset(mouse, TRUE);
