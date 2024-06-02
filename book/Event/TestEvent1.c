@@ -8,7 +8,7 @@ EFI_STATUS Status;
 EFI_SIMPLE_TEXT_INPUT_PROTOCOL                      *SimpleInput;
 int count = 0;
 
-void printchar(){
+EFI_STATUS printchar(){
   //EFI_EVENT event;
   UINTN index;
   Status = gBS->WaitForEvent(
@@ -16,6 +16,7 @@ void printchar(){
     &(SimpleInput->WaitForKey),
     &index
   );
+  return EFI_SUCCESS;
 };
 
 EFI_STATUS
