@@ -144,7 +144,7 @@ EFI_STATUS TestEventSingal()
     EFI_EVENT myEvent = SimpleInput->WaitForKey;
     //char empty;
 
-    Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL");
+    Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL\n");
     // 生成Timer事件，并设置触发函数
     Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_WAIT, TPL_CALLBACK, (EFI_EVENT_NOTIFY)myEventNoify30 , SimpleInput, &(SimpleInput->WaitForKey));
     if (EFI_ERROR(Status)) {
