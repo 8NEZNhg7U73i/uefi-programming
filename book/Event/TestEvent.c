@@ -142,17 +142,17 @@ myEventNoify30 (
 EFI_STATUS TestEventSingal()
 {
     EFI_STATUS Status;
-    EFI_EVENT myEvent[2];
+    EFI_EVENT myEvent[1];
     CHAR16 NotifyContext = L"Hello! Time Out!";
     Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL\n");
 
     // 生成Timer事件，并设置触发函数
-    Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_NOTIFY, (EFI_EVENT_NOTIFY)myEventNoify30, (VOID *) &NotifyContext, &myEvent);
+    Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_NOTIFY, (EFI_EVENT_NOTIFY)myEventNoify30, (VOID *) &NotifyContext, &myEvent[1]);
     if (EFI_ERROR(Status)) {
         Print(L"TestEventSignal: CreateEvent error %r!\n", Status);
     }
     // 设置Timer等待时间为10秒，属性为循环等待
-    Status = gBS->SetTimer(myEvent,TimerPeriodic , 10 * 1000 * 1000 * 10);
+    Status = gBS->SetTimer(myEvent,TimerPeriodic , 10 * 1000 * 1000);
     if (EFI_ERROR(Status)) {
         Print(L"TestEventSignal: SetTimer error %r!\n", Status);
     }
