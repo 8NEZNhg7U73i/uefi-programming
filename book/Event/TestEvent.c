@@ -142,7 +142,7 @@ myEventNoify30 (
 EFI_STATUS TestEventSingal()
 {
     EFI_STATUS Status;
-    EFI_EVENT myEvent = SimpleInput->WaitForKey;
+    EFI_EVENT myEvent[2];
     CHAR16 NotifyContext = L"Hello! Time Out!";
     Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL\n");
 
