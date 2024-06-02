@@ -11,6 +11,7 @@
 #include <Protocol/AbsolutePointer.h>
 #include <Protocol/SimpleTextInEx.h>
 
+EFI_SIMPLE_TEXT_INPUT_PROTOCOL                      *SimpleInput;
 
 /** example  
  *
@@ -113,7 +114,7 @@ EFI_STATUS TestNotify()
     UINTN       index=0;
     EFI_EVENT myEvent;
 
-    Status = gBS->CreateEvent(EVT_NOTIFY_WAIT, TPL_NOTIFY, (EFI_EVENT_NOTIFY)myEventNoify , (VOID*)NULL, &myEvent);
+    Status = gBS->CreateEvent(EVT_NOTIFY_WAIT, TPL_NOTIFY, (EFI_EVENT_NOTIFY)myEventNoify , SimpleInput, &(SimpleInput->WaitForKey));
     Status = gBS->WaitForEvent(1, &myEvent, &index);
     Status = gBS->CloseEvent(myEvent);
 
