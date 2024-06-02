@@ -22,7 +22,7 @@
   
 
 [LibraryClasses]
-  UefiApplicationEntryPoint
+  UefiDriverEntryPoint
   UefiLib
   PcdLib
   DebugLib
