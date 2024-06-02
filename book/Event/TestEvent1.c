@@ -10,7 +10,7 @@ int count = 0;
 
 void printchar(){
   EFI_EVENT event;
-  int index;
+  UINTN index;
   Status = gBS->WaitForEvent(
     1,
     &(SimpleInput->WaitForKey),
