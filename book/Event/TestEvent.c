@@ -144,7 +144,7 @@ EFI_STATUS TestEventSingal()
 {
     EFI_STATUS Status;
     EFI_EVENT myEvent[1];
-    CHAR16 NotifyContext[64] = L"Hello! Time Out!";
+    volatile CHAR16 NotifyContext[64] = L"Hello! Time Out!";
     Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL\n");
 
     // 生成Timer事件，并设置触发函数
