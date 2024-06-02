@@ -31,24 +31,34 @@ NotifyKeyboardCheckForKey (
 EFI_STATUS Status;
 EFI_SIMPLE_TEXT_INPUT_EX_PROTOCOL                      *SimpleInputEx;
 
-//
-// Create a wait event for a Simple Input Protocol
-//
-Status = gBS->CreateEvent (
-                EVT_NOTIFY_WAIT,                       // Type
-                TPL_NOTIFY,                            // NotifyTpl
-                NotifyKeyboardCheckForKey,             // NotifyFunction
-                SimpleInputEx,                         // NotifyContext
-                &(SimpleInputEx->WaitForKeyEx)         // Event
-                );
-if (EFI_ERROR (Status)) {
-  return Status;
-}
+EFI_STATUS EFIAPI
+UefiMain(
+        IN EFI_HANDLE           ImageHandle,
+        IN EFI_SYSTEM_TABLE     *SystemTable
+		)
+{
 
-//
-// Close the wait event
-//
-Status = gBS->CloseEvent (SimpleInputEx->WaitForKeyEx);
-if (EFI_ERROR (Status)) {
-  return Status;
+  //
+  // Create a wait event for a Simple Input Protocol
+  //
+  Status = gBS->CreateEvent(
+      EVT_NOTIFY_WAIT,               // Type
+      TPL_NOTIFY,                    // NotifyTpl
+      NotifyKeyboardCheckForKey,     // NotifyFunction
+      SimpleInputEx,                 // NotifyContext
+      &(SimpleInputEx->WaitForKeyEx) // Event
+  );
+  if (EFI_ERROR(Status))
+  {
+    return Status;
+  }
+
+  //
+  // Close the wait event
+  //
+  Status = gBS->CloseEvent(SimpleInputEx->WaitForKeyEx);
+  if (EFI_ERROR(Status))
+  {
+    return Status;
+  }
 }
