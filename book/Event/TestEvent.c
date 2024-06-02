@@ -141,9 +141,11 @@ myEventNoify30 (
 
 EFI_STATUS TestEventSingal()
 {
-    EFI_STATUS  Status;
-    EFI_EVENT myEvent;
-    Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL");
+    EFI_STATUS Status;
+    EFI_EVENT myEvent = SimpleInput->WaitForKey;
+    CHAR16 NotifyContext = L"Hello! Time Out!";
+    Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL\n");
+
     // 生成Timer事件，并设置触发函数
     Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_NOTIFY, (EFI_EVENT_NOTIFY)myEventNoify30, (VOID *) &NotifyContext, &myEvent);
     if (EFI_ERROR(Status)) {
