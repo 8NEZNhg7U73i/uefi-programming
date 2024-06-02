@@ -144,8 +144,11 @@ EFI_STATUS TestEventSingal()
 {
     EFI_STATUS Status;
     EFI_EVENT myEvent[1];
+    
+    #pragma optimize("", off)
     volatile CHAR16 NotifyContext[64] = L"Hello! Time Out!";
     Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL\n");
+    #pragma optimize("", on)
 
     // 生成Timer事件，并设置触发函数
     Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_NOTIFY, (EFI_EVENT_NOTIFY)myEventNoify30, (VOID *) &NotifyContext, &myEvent[1]);
