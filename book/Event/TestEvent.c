@@ -135,6 +135,7 @@ myEventNoify30 (
 {
     static UINTN times = 0;
     Print(L"%s\nmyEventNotif signal%d\n", Context, times);
+    Print(L"myEventNotif signal%d\n", times);
     times ++;
 }
 
@@ -146,19 +147,21 @@ EFI_STATUS TestEventSingal()
 
     Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL\n");
     // 生成Timer事件，并设置触发函数
-    Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_WAIT, TPL_CALLBACK, (EFI_EVENT_NOTIFY)myEventNoify30 , SimpleInput, &(SimpleInput->WaitForKey));
+    Status = gBS->CreateEvent(EVT_NOTIFY_WAIT, TPL_CALLBACK, (EFI_EVENT_NOTIFY)myEventNoify30 , NULL, &(SimpleInput->WaitForKey));
     if (EFI_ERROR(Status)) {
-        Print(L"TestEventSignal: CreateEvent error %d!\n", Status);
+        Print(L"TestEventSignal: CreateEvent error %r!\n", Status);
     }
+    /*
     // 设置Timer等待时间为10秒，属性为循环等待
     Status = gBS->SetTimer(myEvent,TimerPeriodic , 10 * 1000 * 1000 * 10);
     if (EFI_ERROR(Status)) {
         Print(L"TestEventSignal: SetTimer error %d!\n", Status);
     }
+    */
     //WaitKey();
     //Status = gBS->CloseEvent(myEvent);
     if (EFI_ERROR(Status)) {
-        Print(L"TestEventSignal: CloseEvent error %d!\n", Status);
+        Print(L"TestEventSignal: CloseEvent error %r!\n", Status);
     }
     return EFI_SUCCESS;
 }
@@ -182,7 +185,7 @@ testMouseSimple()
             (VOID**)&mouse
             );
     if (EFI_ERROR(Status)) {
-        Print(L"testMouseSimple: LocateProtocol error %d!\n", Status);
+        Print(L"testMouseSimple: LocateProtocol error %r!\n", Status);
     }
     // 重置鼠标设备
     Status = mouse->Reset(mouse, TRUE);
