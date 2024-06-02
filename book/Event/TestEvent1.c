@@ -37,9 +37,8 @@ NotifyKeyboardCheckForKey (
   IN VOID                                              *Context
   )
 {
-  EFI_SIMPLE_TEXT_INPUT_PROTOCOL                    *SimpleInput;
-  SimpleInput = (EFI_SIMPLE_TEXT_INPUT_PROTOCOL   *)Context;
-  
+  SimpleInput = (EFI_SIMPLE_TEXT_INPUT_PROTOCOL *)Context;
+
   if (!EFI_ERROR (KeyboardCheckForKey ())) {
     gBS->SignalEvent (SimpleInput->WaitForKey);
   }
