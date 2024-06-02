@@ -45,7 +45,8 @@
   gEfiPciIoProtocolGuid
   gEfiSimplePointerProtocolGuid
   gEfiSimpleTextInputExProtocolGuid
-
+  gEfiSimpleTextInProtocolGuid
+  
 [FeaturePcd]
 
 [Pcd.common]

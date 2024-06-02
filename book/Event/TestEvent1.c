@@ -1,6 +1,6 @@
 #include <Uefi.h>
 #include <Library/UefiBootServicesTableLib.h>
-#include <Protocol/SimpleTextInEx.h>
+#include <Protocol/SimpleTextIn.h>
 
 EFI_STATUS
 KeyboardCheckForKey (
@@ -21,15 +21,15 @@ NotifyKeyboardCheckForKey (
   IN VOID                                              *Context
   )
 {
-  EFI_SIMPLE_TEXT_INPUT_EX_PROTOCOL                    *SimpleInputEx;
-  SimpleInputEx = (EFI_SIMPLE_TEXT_INPUT_EX_PROTOCOL   *)Context;
+  EFI_SIMPLE_TEXT_IN_PROTOCOL                    *SimpleInput;
+  SimpleInput = (EFI_SIMPLE_TEXT_IN_PROTOCOL   *)Context;
   if (!EFI_ERROR (KeyboardCheckForKey ())) {
-    gBS->SignalEvent (SimpleInputEx->WaitForKeyEx);
+    gBS->SignalEvent (SimpleInput->WaitForKey);
   }
 }
 
 EFI_STATUS Status;
-EFI_SIMPLE_TEXT_INPUT_EX_PROTOCOL                      *SimpleInputEx;
+EFI_SIMPLE_TEXT_IN_PROTOCOL                      *SimpleInput;
 
 EFI_STATUS EFIAPI
 UefiMain(
@@ -45,8 +45,8 @@ UefiMain(
       EVT_NOTIFY_WAIT,               // Type
       TPL_NOTIFY,                    // NotifyTpl
       NotifyKeyboardCheckForKey,     // NotifyFunction
-      SimpleInputEx,                 // NotifyContext
-      &(SimpleInputEx->WaitForKeyEx) // Event
+      SimpleInput,                 // NotifyContext
+      &(SimpleInput->WaitForKey) // Event
   );
   if (EFI_ERROR(Status))
   {
@@ -56,7 +56,7 @@ UefiMain(
   //
   // Close the wait event
   //
-  Status = gBS->CloseEvent(SimpleInputEx->WaitForKeyEx);
+  Status = gBS->CloseEvent(SimpleInput->WaitForKey);
   if (EFI_ERROR(Status))
   {
     return Status;
