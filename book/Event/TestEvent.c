@@ -46,14 +46,19 @@ void WaitKey()
     EFI_STATUS   Status = 0;
     UINTN        Index=0;
     EFI_INPUT_KEY  Key;
-
-    Status = gBS->WaitForEvent(1, &gST->ConIn->WaitForKey, &Index);
-    if (EFI_ERROR(Status)) {
-        Print(L"WaitKey: WaitForEvent Error!\n");
-    }
-    Status = gST->ConIn->ReadKeyStroke (gST->ConIn, &Key);
-    if (EFI_ERROR(Status)) {
-        Print(L"WaitKey: ReadKeyStroke Error!\n");
+    while(1){
+        Status = gBS->WaitForEvent(1, &gST->ConIn->WaitForKey, &Index);
+        if (EFI_ERROR(Status)) {
+            Print(L"WaitKey: WaitForEvent Error!\n");
+        }
+        Status = gST->ConIn->ReadKeyStroke (gST->ConIn, &Key);
+        if (EFI_ERROR(Status)) {
+            Print(L"WaitKey: ReadKeyStroke Error!\n");
+        }
+        else {
+            Print(L"ScanCode: %d", Key.ScanCode);
+            Print(L"UnicodeChar: %s", Key.UnicodeChar);
+        }
     }
 }
 
@@ -147,7 +152,7 @@ EFI_STATUS TestEventSingal()
 
     Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL\n");
     // 生成Timer事件，并设置触发函数
-    Status = gBS->CreateEvent(EVT_NOTIFY_WAIT, TPL_CALLBACK, (EFI_EVENT_NOTIFY)myEventNoify30 , NULL, &(SimpleInput->WaitForKey));
+    Status = gBS->CreateEvent(EVT_NOTIFY_WAIT, TPL_NOTIFY, (EFI_EVENT_NOTIFY)myEventNoify30 , NULL, &(SimpleInput->WaitForKey));
     if (EFI_ERROR(Status)) {
         Print(L"TestEventSignal: CreateEvent error %r!\n", Status);
     }
@@ -158,7 +163,7 @@ EFI_STATUS TestEventSingal()
         Print(L"TestEventSignal: SetTimer error %d!\n", Status);
     }
     */
-    //WaitKey();
+    WaitKey();
     //Status = gBS->CloseEvent(myEvent);
     if (EFI_ERROR(Status)) {
         Print(L"TestEventSignal: CloseEvent error %r!\n", Status);
