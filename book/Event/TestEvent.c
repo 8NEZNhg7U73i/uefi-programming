@@ -135,6 +135,7 @@ myEventNoify30 (
 {
     static UINTN times = 0;
     Print(L"%s\nmyEventNotif signal%d\n", Context, times);
+    Print(L"Context: %s\nsignal: %d\n", Context, times);
     times ++;
 }
 
