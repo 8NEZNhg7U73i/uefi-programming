@@ -145,7 +145,7 @@ EFI_STATUS TestEventSingal()
     EFI_EVENT myEvent;
     Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL");
     // 生成Timer事件，并设置触发函数
-    Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_CALLBACK, (EFI_EVENT_NOTIFY)myEventNoify30, (VOID*)L"Hello! Time Out!", &myEvent);
+    Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_NOTIFY, (EFI_EVENT_NOTIFY)myEventNoify30, (VOID *) &NotifyContext, &myEvent);
     if (EFI_ERROR(Status)) {
         Print(L"TestEventSignal: CreateEvent error %r!\n", Status);
     }
