@@ -4,6 +4,10 @@
 #include <Library/UefiLib.h>
 
 
+EFI_STATUS Status;
+EFI_SIMPLE_TEXT_INPUT_PROTOCOL                      *SimpleInput;
+int count = 0;
+
 void printchar(){
   EFI_EVENT event;
   int index;
@@ -13,10 +17,6 @@ void printchar(){
     &index
   )
 }
-
-EFI_STATUS Status;
-EFI_SIMPLE_TEXT_INPUT_PROTOCOL                      *SimpleInput;
-int count = 0;
 
 EFI_STATUS
 KeyboardCheckForKey (
