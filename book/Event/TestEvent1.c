@@ -61,4 +61,8 @@ UefiMain(
   {
     return Status;
   }
+  else
+  {
+    return Status;
+  }
 }
