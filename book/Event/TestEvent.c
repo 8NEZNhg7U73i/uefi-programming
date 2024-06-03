@@ -157,7 +157,7 @@ EFI_STATUS TestEventSingal()
     EFI_EVENT TimeEvent;
     KeyEvent = gST->ConIn->WaitForKey;
     
-    Unsigned short TimeNotifyContext = L"Hello! Time Out!";
+    unsigned short TimeNotifyContext = L"Hello! Time Out!";
     Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL\n");
 
     // 生成Timer事件，并设置触发函数
