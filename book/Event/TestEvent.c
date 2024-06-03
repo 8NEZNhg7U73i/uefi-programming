@@ -140,7 +140,7 @@ myEventNoify30 (
     times ++;
 }
 
-EFI_STATUS TimeNotify(IN EFI_EVENT Event; IN VOID * Context;)
+VOID TimeNotify(IN EFI_EVENT Event; IN VOID * Context;)
 {
     Print(L"Context: %s\n", Context);
     Status=gBS->CheckEvent(gST->ConIn->WaitForKey);
