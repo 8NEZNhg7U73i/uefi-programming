@@ -140,7 +140,7 @@ myEventNoify30 (
     times ++;
 }
 
-EFI_STATUS TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
+VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
 {
     //EFI_STATUS Status;
     Print(L"Context: %s\n", Context);
