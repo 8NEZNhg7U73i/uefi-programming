@@ -142,14 +142,17 @@ myEventNoify30 (
 
 VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
 {
-    //EFI_STATUS Status;
+    EFI_INPUT_KEY Key;
+    EFI_STATUS Status;
     Print(L"Context: %s\n", Context);
-    //Status = gBS->CheckEvent(gST->ConIn->WaitForKey);
-    //Print(L"Status: %r\n", Status);
+    Status = gBS->CheckEvent(gST->ConIn->WaitForKey);
+    Print(L"Status: %r\n", Status);
+    Status = gST->ConIn->ReadKeyStorke(&Key);
+    Print(L"Unicode char: %s\n", Key.UnicodeChar);
+    Print(L"Scan code: %d\n", Key.ScanCode);
     //return EFI_SUCCESS;
 }
 
-#pragma optimize("", off)
 EFI_STATUS TestEventSingal()
 {
     EFI_STATUS Status;
@@ -157,13 +160,13 @@ EFI_STATUS TestEventSingal()
     EFI_EVENT TimeEvent;
     KeyEvent = gST->ConIn->WaitForKey;
     
-    CHAR16 TimeNotifyContext[64] = L"Hello! Time Out!";
+    CHAR16 *TimeNotifyContext = L"Hello! Time Out!";
     Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL\n");
 
     // 生成Timer事件，并设置触发函数
     //Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_CALLBACK, (EFI_EVENT_NOTIFY)myEventNoify30, (VOID *) &NotifyContext, &myEvent[1]);
     //Status = gBS->CreateEvent(EVT_NOTIFY_SIGNAL, TPL_NOTIFY, (EFI_EVENT_NOTIFY)TakeScreenShotNotify, (VOID *) &TakeScreenShotNotifyContext, &KeyEvent);
-    Status = gBS->CreateEvent(EVT_TIMER, TPL_NOTIFY, (EFI_EVENT_NOTIFY)TimeNotify, (VOID *) &TimeNotifyContext, &TimeEvent);
+    Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_NOTIFY, (EFI_EVENT_NOTIFY)TimeNotify, (VOID *) TimeNotifyContext, &TimeEvent);
     Status = gBS->SetTimer(TimeEvent, TimerPeriodic, EFI_TIMER_PERIOD_MICROSECONDS(500));
     //Status = gBS->CloseEvent(KeyEvent);
     //Status = gBS->CloseEvent(TimeEvent);
@@ -183,7 +186,6 @@ EFI_STATUS TestEventSingal()
     }
     return EFI_SUCCESS;
 }
-#pragma optimize("", on)
 
 /* examle 5
  *
