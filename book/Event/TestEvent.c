@@ -166,7 +166,7 @@ EFI_STATUS TestEventSingal()
     Status = gBS->CreateEvent(EVT_TIMER, TPL_NOTIFY, (EFI_EVENT_NOTIFY)TimeNotify, (VOID *) &TimeNotifyContext, &TimeEvent);
     Status = gBS->SetTimer(TimeEvent, TimerPeriodic, EFI_TIMER_PERIOD_MICROSECONDS(500));
     //Status = gBS->CloseEvent(KeyEvent);
-    Status = gBS->CloseEvent(TimeEvent);
+    //Status = gBS->CloseEvent(TimeEvent);
     if (EFI_ERROR(Status)) {
         Print(L"TestEventSignal: CreateEvent error %r!\n", Status);
     }
