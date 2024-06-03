@@ -1,6 +1,7 @@
 /** @file
  **/
 #include <Uefi.h>
+#include <Library/BaseMemoryLib.h>
 #include <Library/UefiLib.h>
 #include <Library/UefiApplicationEntryPoint.h>
 #include <Library/UefiBootServicesTableLib.h>
@@ -11,6 +12,7 @@
 #include <Protocol/AbsolutePointer.h>
 #include <Protocol/SimpleTextInEx.h>
 
+EFI_SIMPLE_TEXT_INPUT_PROTOCOL                      *SimpleInput;
 
 /** example  
  *
@@ -42,7 +44,7 @@ EFI_STATUS testTimeOut()
  */
 void WaitKey()
 {
-    EFI_STATUS   Status = 0;
+    EFI_STATUS   Status;
     UINTN        Index=0;
     EFI_INPUT_KEY  Key;
 
@@ -134,31 +136,54 @@ myEventNoify30 (
 {
     static UINTN times = 0;
     Print(L"%s\nmyEventNotif signal%d\n", Context, times);
+    Print(L"Context: %s\nsignal: %d\n", Context, times);
     times ++;
 }
 
+VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
+{
+    //EFI_STATUS Status;
+    Print(L"Context: %s\n", Context);
+    //Status = gBS->CheckEvent(gST->ConIn->WaitForKey);
+    //Print(L"Status: %r\n", Status);
+    //return EFI_SUCCESS;
+}
+
+#pragma optimize("", off)
 EFI_STATUS TestEventSingal()
 {
-    EFI_STATUS  Status;
-    EFI_EVENT myEvent;
-    Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL");
+    EFI_STATUS Status;
+    EFI_EVENT KeyEvent;
+    EFI_EVENT TimeEvent;
+    KeyEvent = gST->ConIn->WaitForKey;
+    
+    CHAR16 TimeNotifyContext[64] = L"Hello! Time Out!";
+    Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL\n");
+
     // 生成Timer事件，并设置触发函数
-    Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_CALLBACK, (EFI_EVENT_NOTIFY)myEventNoify30, (VOID*)L"Hello! Time Out!", &myEvent);
+    //Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_CALLBACK, (EFI_EVENT_NOTIFY)myEventNoify30, (VOID *) &NotifyContext, &myEvent[1]);
+    //Status = gBS->CreateEvent(EVT_NOTIFY_SIGNAL, TPL_NOTIFY, (EFI_EVENT_NOTIFY)TakeScreenShotNotify, (VOID *) &TakeScreenShotNotifyContext, &KeyEvent);
+    Status = gBS->CreateEvent(EVT_TIMER, TPL_NOTIFY, (EFI_EVENT_NOTIFY)TimeNotify, (VOID *) &TimeNotifyContext, &TimeEvent);
+    Status = gBS->SetTimer(TimeEvent, TimerPeriodic, EFI_TIMER_PERIOD_MICROSECONDS(500));
+    //Status = gBS->CloseEvent(KeyEvent);
+    //Status = gBS->CloseEvent(TimeEvent);
     if (EFI_ERROR(Status)) {
-        Print(L"TestEventSignal: CreateEvent error %d!\n", Status);
+        Print(L"TestEventSignal: CreateEvent error %r!\n", Status);
     }
     // 设置Timer等待时间为10秒，属性为循环等待
-    Status = gBS->SetTimer(myEvent,TimerPeriodic , 10 * 1000 * 1000);
-    if (EFI_ERROR(Status)) {
-        Print(L"TestEventSignal: SetTimer error %d!\n", Status);
+    //Status = gBS->SetTimer(myEvent[0], TimerPeriodic, 10 * 1000 * 1000);
+    if (EFI_ERROR(Status))
+    {
+        Print(L"TestEventSignal: SetTimer error %r!\n", Status);
     }
     //WaitKey();
     //Status = gBS->CloseEvent(myEvent);
     if (EFI_ERROR(Status)) {
-        Print(L"TestEventSignal: CloseEvent error %d!\n", Status);
+        Print(L"TestEventSignal: CloseEvent error %r!\n", Status);
     }
     return EFI_SUCCESS;
 }
+#pragma optimize("", on)
 
 /* examle 5
  *
@@ -179,7 +204,7 @@ testMouseSimple()
             (VOID**)&mouse
             );
     if (EFI_ERROR(Status)) {
-        Print(L"testMouseSimple: LocateProtocol error %d!\n", Status);
+        Print(L"testMouseSimple: LocateProtocol error %r!\n", Status);
     }
     // 重置鼠标设备
     Status = mouse->Reset(mouse, TRUE);
