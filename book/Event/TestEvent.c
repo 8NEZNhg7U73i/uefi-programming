@@ -47,13 +47,11 @@ EFI_STATUS testTimeOut()
 void WaitKey()
 {
     EFI_INPUT_KEY Key;
-    EFI_STATUS Status = 0;
+    EFI_STATUS Status;
     UINTN waitidx;
     EFI_EVENT KeyEvent;
 
-    EFI_STATUS   Status;
     UINTN        Index=0;
-    EFI_INPUT_KEY  Key;
 
     Status = gBS->WaitForEvent(1, &gST->ConIn->WaitForKey, &Index);
     if (EFI_ERROR(Status)) {
