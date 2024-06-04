@@ -140,6 +140,15 @@ myEventNoify30 (
     times ++;
 }
 
+VOID KeyNofify(IN EFI_EVENT EVENT, IN VOID *Context)
+{
+    EFI_INTPU_KEY Key;
+    EFI_STATUS Status;
+    Status = gST->ConIn->ReadKeyStroke(gST->ConIn, &Key);
+    Print(L"Unicode char: %s\n", Key.UnicodeChar);
+    Print(L"Scan code: %d\n", Key.ScanCode);
+
+}
 VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
 {
     EFI_INPUT_KEY Key;
@@ -155,8 +164,8 @@ VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
     Status = gBS->CheckEvent(gST->ConIn->WaitForKey);
     Print(L"Status: %r\n", Status);
     Status = gST->ConIn->ReadKeyStroke(gST->ConIn, &Key);
-    Print(L"Unicode char: %s\n", Key.UnicodeChar);
-    Print(L"Scan code: %d\n", Key.ScanCode);
+    //Print(L"Unicode char: %s\n", Key.UnicodeChar);
+    //Print(L"Scan code: %d\n", Key.ScanCode);
     //return EFI_SUCCESS;
 }
 
