@@ -12,6 +12,8 @@
 #include <Protocol/AbsolutePointer.h>
 #include <Protocol/SimpleTextInEx.h>
 
+#include "TestEvent.h"
+
 EFI_SIMPLE_TEXT_INPUT_PROTOCOL                      *SimpleInput;
 
 /** example  
@@ -169,6 +171,7 @@ VOID KeyNofify(IN EFI_EVENT EVENT, IN VOID *Context)
     Print(L"Unicode char: %s\n", Key.UnicodeChar);
     Print(L"Scan code: %d\n", Key.ScanCode);
 }
+
 EFI_STATUS TestEventSingal()
 {
     EFI_STATUS Status;
