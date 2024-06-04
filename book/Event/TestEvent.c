@@ -147,8 +147,8 @@ VOID KeyNofify(IN EFI_EVENT EVENT, IN VOID *Context)
     Status = gST->ConIn->ReadKeyStroke(gST->ConIn, &Key);
     Print(L"Unicode char: %s\n", Key.UnicodeChar);
     Print(L"Scan code: %d\n", Key.ScanCode);
-
 }
+
 VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
 {
     EFI_INPUT_KEY Key;
