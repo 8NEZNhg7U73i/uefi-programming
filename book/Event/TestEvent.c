@@ -142,7 +142,7 @@ myEventNoify30 (
 
 VOID KeyNofify(IN EFI_EVENT EVENT, IN VOID *Context)
 {
-    EFI_INTPU_KEY Key;
+    EFI_INPUT_KEY Key;
     EFI_STATUS Status;
     Status = gST->ConIn->ReadKeyStroke(gST->ConIn, &Key);
     Print(L"Unicode char: %s\n", Key.UnicodeChar);
