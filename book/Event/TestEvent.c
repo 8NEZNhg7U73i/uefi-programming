@@ -74,7 +74,7 @@ EFI_STATUS TestTimer()
     UINTN       repeats=0;
 
     Print(L"Test EVT_TIMER  ");
-    Status = gBS->CreateEvent(EVT_TIMER  , TPL_CALLBACK, (EFI_EVENT_NOTIFY)NULL, (VOID*)NULL, &myEvent);
+    Status = gBS->CreateEvent(EVT_TIMER , TPL_CALLBACK, (EFI_EVENT_NOTIFY)NULL, (VOID*)NULL, &myEvent);
     if(EFI_ERROR(Status)){
         Print(L"Fail EVT_TIMER | EVT_RUNTIME %r", Status);
         return Status;
@@ -151,7 +151,7 @@ EFI_STATUS TestEventSingal()
     Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL\n");
 
     // 生成Timer事件，并设置触发函数
-    Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_NOTIFY, (EFI_EVENT_NOTIFY)myEventNoify30, (VOID *) &NotifyContext, &myEvent[1]);
+    Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_NOTIFY, (EFI_EVENT_NOTIFY)myEventNoify30, (VOID *) &NotifyContext, &myEvent[0]);
     if (EFI_ERROR(Status)) {
         Print(L"TestEventSignal: CreateEvent error %r!\n", Status);
     }
