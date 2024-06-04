@@ -12,8 +12,6 @@
 #include <Protocol/AbsolutePointer.h>
 #include <Protocol/SimpleTextInEx.h>
 
-#include "TestEvent.h"
-
 EFI_SIMPLE_TEXT_INPUT_PROTOCOL                      *SimpleInput;
 
 /** example  
@@ -142,59 +140,23 @@ myEventNoify30 (
     times ++;
 }
 
-
-VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
-{
-    EFI_INPUT_KEY Key;
-    EFI_STATUS Status = 0;
-    UINTN waitidx;
-    EFI_EVENT KeyEvent;
-    CHAR16 *KeyNotifyContext = L"TimeNotify!";
-    KeyEvent = gST->ConIn->WaitForKey;
-    Status = gBS->CreateEvent(EVT_NOTIFY_SIGNAL, TPL_APPLICATION, (EFI_EVENT_NOTIFY)KeyNotify, (VOID *) KeyNotifyContext, &KeyEvent);
-    Print(L"Status: %r\n", Status);
-    Print(L"Context: %s\n", Context);
-    Status = gBS->WaitForEvent(1, &(gST->ConIn->WaitForKey), &waitidx);
-    Print(L"Status: %r\n", Status);
-    Status = gBS->CheckEvent(gST->ConIn->WaitForKey);
-    Print(L"Status: %r\n", Status);
-    Status = gST->ConIn->ReadKeyStroke(gST->ConIn, &Key);
-    //Print(L"Unicode char: %s\n", Key.UnicodeChar);
-    //Print(L"Scan code: %d\n", Key.ScanCode);
-    //return EFI_SUCCESS;
-}
-
-VOID KeyNotify(IN EFI_EVENT Event, IN VOID *Context)
-{
-    EFI_INPUT_KEY Key;
-    EFI_STATUS Status;
-    Status = gST->ConIn->ReadKeyStroke(gST->ConIn, &Key);
-    Print(L"Unicode char: %s\n", Key.UnicodeChar);
-    Print(L"Scan code: %d\n", Key.ScanCode);
-}
-
+#pragma optimize("", off)
 EFI_STATUS TestEventSingal()
 {
     EFI_STATUS Status;
-    EFI_EVENT KeyEvent;
-    EFI_EVENT TimeEvent;
-    KeyEvent = gST->ConIn->WaitForKey;
+    EFI_EVENT myEvent[2]={0};
+    myEvent[1] = gST->ConIn->WaitForKey;
     
-    CHAR16 *TimeNotifyContext = L"Hello! Time Out!";
+    CHAR16 NotifyContext[64] = L"Hello! Time Out!";
     Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL\n");
 
     // 生成Timer事件，并设置触发函数
-    //Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_CALLBACK, (EFI_EVENT_NOTIFY)myEventNoify30, (VOID *) &NotifyContext, &myEvent[1]);
-    //Status = gBS->CreateEvent(EVT_NOTIFY_SIGNAL, TPL_NOTIFY, (EFI_EVENT_NOTIFY)TakeScreenShotNotify, (VOID *) &TakeScreenShotNotifyContext, &KeyEvent);
-    Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_NOTIFY, (EFI_EVENT_NOTIFY)TimeNotify, (VOID *) TimeNotifyContext, &TimeEvent);
-    Status = gBS->SetTimer(TimeEvent, TimerPeriodic, 10 * 1000 * 1000);
-    //Status = gBS->CloseEvent(KeyEvent);
-    //Status = gBS->CloseEvent(TimeEvent);
+    Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_NOTIFY, (EFI_EVENT_NOTIFY)myEventNoify30, (VOID *) &NotifyContext, &myEvent[1]);
     if (EFI_ERROR(Status)) {
         Print(L"TestEventSignal: CreateEvent error %r!\n", Status);
     }
     // 设置Timer等待时间为10秒，属性为循环等待
-    //Status = gBS->SetTimer(myEvent[0], TimerPeriodic, 10 * 1000 * 1000);
+    Status = gBS->SetTimer(myEvent[0], TimerPeriodic, 10 * 1000 * 1000);
     if (EFI_ERROR(Status))
     {
         Print(L"TestEventSignal: SetTimer error %r!\n", Status);
@@ -206,6 +168,7 @@ EFI_STATUS TestEventSingal()
     }
     return EFI_SUCCESS;
 }
+#pragma optimize("", on)
 
 /* examle 5
  *
