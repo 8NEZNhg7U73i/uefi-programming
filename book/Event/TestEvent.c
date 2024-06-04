@@ -161,7 +161,7 @@ VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
     EFI_EVENT KeyEvent;
     CHAR16 *KeyNotifyContext = L"TimeNotify!";
     KeyEvent = gST->ConIn->WaitForKey;
-    Status = gBS->CreateEvent(EVT_NOTIFY_SIGNAL, TPL_APPLICATION, (EFI_EVENT_NOTIFY)KeyNotify, (VOID *) KeyNotifyContext, &KeyEvent);
+    Status = gBS->CreateEvent(EVT_NOTIFY_SIGNAL, TPL_NOTIFY, (EFI_EVENT_NOTIFY)KeyNotify, (VOID *) KeyNotifyContext, &KeyEvent);
     Print(L"Status: %r\n", Status);
     Print(L"Context: %s\n", Context);
     Status = gBS->WaitForEvent(1, &(gST->ConIn->WaitForKey), &waitidx);
@@ -197,7 +197,7 @@ EFI_STATUS TestEventSingal()
     // 生成Timer事件，并设置触发函数
     //Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_CALLBACK, (EFI_EVENT_NOTIFY)myEventNoify30, (VOID *) &NotifyContext, &myEvent[1]);
     //Status = gBS->CreateEvent(EVT_NOTIFY_SIGNAL, TPL_NOTIFY, (EFI_EVENT_NOTIFY)TakeScreenShotNotify, (VOID *) &TakeScreenShotNotifyContext, &KeyEvent);
-    Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_APPLICATION, (EFI_EVENT_NOTIFY)TimeNotify, (VOID *) TimeNotifyContext, &TimeEvent);
+    Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_NOTIFY, (EFI_EVENT_NOTIFY)TimeNotify, (VOID *) TimeNotifyContext, &TimeEvent);
     Status = gBS->SetTimer(TimeEvent, TimerPeriodic, 10 * 1000 * 1000);
     //Status = gBS->CloseEvent(KeyEvent);
     //Status = gBS->CloseEvent(TimeEvent);
