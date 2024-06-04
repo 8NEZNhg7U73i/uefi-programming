@@ -46,6 +46,11 @@ EFI_STATUS testTimeOut()
  */
 void WaitKey()
 {
+    EFI_INPUT_KEY Key;
+    EFI_STATUS Status = 0;
+    UINTN waitidx;
+    EFI_EVENT KeyEvent;
+
     EFI_STATUS   Status;
     UINTN        Index=0;
     EFI_INPUT_KEY  Key;
@@ -58,6 +63,13 @@ void WaitKey()
     if (EFI_ERROR(Status)) {
         Print(L"WaitKey: ReadKeyStroke Error!\n");
     }
+    Status = gBS->WaitForEvent(1, &(gST->ConIn->WaitForKey), &waitidx);
+    Print(L"Status: %r\n", Status);
+    Status = gBS->CheckEvent(gST->ConIn->WaitForKey);
+    Print(L"Status: %r\n", Status);
+    Status = gST->ConIn->ReadKeyStroke(gST->ConIn, &Key);
+    Print(L"Unicode char: %s\n", Key.UnicodeChar);
+    Print(L"Scan code: %d\n", Key.ScanCode);
 }
 
 /** example 2
@@ -159,6 +171,7 @@ VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
     Status = gBS->CheckEvent(gST->ConIn->WaitForKey);
     Print(L"Status: %r\n", Status);
     Status = gST->ConIn->ReadKeyStroke(gST->ConIn, &Key);
+    WaitKey();
     //Print(L"Unicode char: %s\n", Key.UnicodeChar);
     //Print(L"Scan code: %d\n", Key.ScanCode);
     //return EFI_SUCCESS;
