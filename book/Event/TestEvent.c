@@ -150,7 +150,7 @@ VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
     Print(L"Status: %r\n", Status);
     Status = gBS->CheckEvent(gST->ConIn->WaitForKey);
     Print(L"Status: %r\n", Status);
-    Status = gST->ConIn->ReadKeyStorke(&Key);
+    Status = gST->ConIn->ReadKeyStroke(&Key);
     Print(L"Unicode char: %s\n", Key.UnicodeChar);
     Print(L"Scan code: %d\n", Key.ScanCode);
     //return EFI_SUCCESS;
