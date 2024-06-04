@@ -49,7 +49,7 @@ void WaitKey()
     EFI_INPUT_KEY Key;
     EFI_STATUS Status;
     UINTN waitidx;
-    EFI_EVENT KeyEvent;
+    //EFI_EVENT KeyEvent;
 
     UINTN        Index=0;
 
