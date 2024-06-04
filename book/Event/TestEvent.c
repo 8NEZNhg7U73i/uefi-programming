@@ -146,7 +146,7 @@ VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
     EFI_STATUS Status = 0;
     UINTN waitidx;
     Print(L"Context: %s\n", Context);
-    Status = gBS->WaitForEvent(1, &(SystemTable->ConIn->WaitForKey), &waitidx);
+    Status = gBS->WaitForEvent(1, &(gST->ConIn->WaitForKey), &waitidx);
     Print(L"Status: %r\n", Status);
     Status = gBS->CheckEvent(gST->ConIn->WaitForKey);
     Print(L"Status: %r\n", Status);
