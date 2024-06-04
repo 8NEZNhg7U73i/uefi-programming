@@ -164,9 +164,9 @@ VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
     Status = gBS->CreateEvent(EVT_NOTIFY_SIGNAL, TPL_NOTIFY, (EFI_EVENT_NOTIFY)KeyNotify, (VOID *) KeyNotifyContext, &KeyEvent);
     Print(L"Status: %r\n", Status);
     Print(L"Context: %s\n", Context);
-    Status = gBS->WaitForEvent(1, &(gST->ConIn->WaitForKey), &waitidx);
+    Status = gBS->WaitForEvent(1, &(gST->ConIn->WaitForKey), &KeyEvent);
     Print(L"Status: %r\n", Status);
-    Status = gBS->CheckEvent(gST->ConIn->WaitForKey);
+    Status = gBS->CheckEvent(&KeyEvent);
     Print(L"Status: %r\n", Status);
     Status = gST->ConIn->ReadKeyStroke(gST->ConIn, &Key);
     WaitKey();
