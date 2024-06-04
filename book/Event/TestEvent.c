@@ -53,7 +53,7 @@ void WaitKey()
 
     UINTN        Index=0;
 
-    Status = gBS->WaitForEvent(1, &gST->ConIn->WaitForKey, &Index);
+    Status = gBS->WaitForEvent(1, &(gST->ConIn->WaitForKey), &Index);
     if (EFI_ERROR(Status)) {
         Print(L"WaitKey: WaitForEvent Error: %r\n", Status);
     }
