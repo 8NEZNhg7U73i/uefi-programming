@@ -42,6 +42,7 @@ VOID testMouseSimple(IN EFI_EVENT Event, IN VOID *Context)
     // 等待events中的任一事件发生
     Status = gBS->WaitForEvent(2, events, &index);
     Print(L"WaitForEvent: %r\n", Status);
+    Print(L"index: %u", &index);
     if (Status == EFI_SUCCESS){
         if (index == 0)
         {
