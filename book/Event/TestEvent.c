@@ -49,13 +49,9 @@ void WaitKey()
     EFI_INPUT_KEY  Key;
 
     Status = gBS->WaitForEvent(1, &gST->ConIn->WaitForKey, &Index);
-    if (EFI_ERROR(Status)) {
-        Print(L"WaitKey: WaitForEvent Error!\n");
-    }
+    Print(L"WaitKey: WaitForEvent : %r\n", Status);
     Status = gST->ConIn->ReadKeyStroke (gST->ConIn, &Key);
-    if (EFI_ERROR(Status)) {
-        Print(L"WaitKey: ReadKeyStroke Error!\n");
-    }
+    Print(L"WaitKey: ReadKeyStroke : %r\n", Status);
 }
 
 /** example 2
@@ -134,10 +130,17 @@ myEventNoify30 (
         IN VOID                     *Context
         )
 {
+    EFI_STATUS   Status;
+    UINTN        Index=0;
+    EFI_INPUT_KEY  Key;
+
+    Status = gBS->WaitForEvent(1, &gST->ConIn->WaitForKey, &Index);
+    Print(L"myEventNoify30: %r\n", Status);
     static UINTN times = 0;
     Print(L"%s\nmyEventNotif signal%d\n", Context, times);
     Print(L"Context: %s\nsignal: %d\n", Context, times);
     times ++;
+    
 }
 
 VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
@@ -176,7 +179,7 @@ EFI_STATUS TestEventSingal()
     {
         Print(L"TestEventSignal: SetTimer error %r!\n", Status);
     }
-    //WaitKey();
+    WaitKey();
     //Status = gBS->CloseEvent(myEvent);
     if (EFI_ERROR(Status)) {
         Print(L"TestEventSignal: CloseEvent error %r!\n", Status);
