@@ -137,6 +137,9 @@ myEventNoify30 (
     Status = gBS->WaitForEvent(1, &gST->ConIn->WaitForKey, &Index);
     Print(L"myEventNoify30: %r\n", Status);
     Status = gST->ReadKeyStroke(&gST->ConIn, &Key);
+    Status = gST->ConIn->ReadKeyStroke(gST->ConIn, &Key);
+    Print(L"Unicode char: %s\n", Key.UnicodeChar);
+    Print(L"Scan code: %d\n", Key.ScanCode);
     Print(L"ReadKey: %r\n", Status);
     Print(L"")
     static UINTN times = 0;
