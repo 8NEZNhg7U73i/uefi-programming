@@ -57,11 +57,13 @@ void WaitKey()
     if (EFI_ERROR(Status)) {
         Print(L"WaitKey: ReadKeyStroke Error: %r\n", Status);
     }
+    /*
     Status = gBS->WaitForEvent(1, &(gST->ConIn->WaitForKey), &waitidx);
     Print(L"Status: %r\n", Status);
     Status = gBS->CheckEvent(gST->ConIn->WaitForKey);
     Print(L"Status: %r\n", Status);
     Status = gST->ConIn->ReadKeyStroke(gST->ConIn, &Key);
+    */
     Print(L"Unicode char: %s\n", Key.UnicodeChar);
     Print(L"Scan code: %d\n", Key.ScanCode);
 }
