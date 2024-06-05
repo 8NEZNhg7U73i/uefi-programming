@@ -37,7 +37,7 @@ VOID testMouseSimple(IN EFI_EVENT Event, IN VOID *Context)
     events[0] = mouse->WaitForInput;
     // 将键盘事件放到等待数组
     events[1] = gST->ConIn->WaitForKey;
-    EFI_INPUT_KEY	   Key;
+    EFI_INPUT_KEY     Key;
     UINTN index;
     // 等待events中的任一事件发生
     Status = gBS->WaitForEvent(2, events, &index);
