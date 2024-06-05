@@ -28,7 +28,6 @@ EFI_EVENT KeyEvent = gST->ConIn->WaitForKey;
  */
 EFI_STATUS testTimeOut()
 {
-    EFI_STATUS Status;
     UINTN EventIndex = 0;
     EFI_EVENT Events[2] = {0}; 
     Events[0] = gST->ConIn->WaitForKey;
@@ -54,7 +53,6 @@ EFI_STATUS testTimeOut()
 void WaitKey()
 {
     EFI_INPUT_KEY Key;
-    EFI_STATUS Status;
     UINTN waitidx;
     //EFI_EVENT KeyEvent;
 
@@ -87,7 +85,6 @@ INTN TimeOut()
 
 EFI_STATUS TestTimer()
 {
-    EFI_STATUS  Status;
     EFI_EVENT myEvent;
     UINTN       index=0;
     UINTN       repeats=0;
@@ -130,7 +127,6 @@ VOID myEventNoify (
 
 EFI_STATUS TestNotify()
 {
-    EFI_STATUS  Status;
     UINTN       index=0;
     EFI_EVENT myEvent;
 
@@ -183,7 +179,6 @@ VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
 VOID KeyNotify(IN EFI_EVENT Event, IN VOID *Context)
 {
     EFI_INPUT_KEY Key;
-    EFI_STATUS Status;
     Status = gST->ConIn->ReadKeyStroke(gST->ConIn, &Key);
     Print(L"Unicode char: %s\n", Key.UnicodeChar);
     Print(L"Scan code: %d\n", Key.ScanCode);
@@ -191,7 +186,6 @@ VOID KeyNotify(IN EFI_EVENT Event, IN VOID *Context)
 
 EFI_STATUS TestEventSingal()
 {
-    EFI_STATUS Status;
     EFI_EVENT KeyEvent;
     EFI_EVENT TimeEvent;
     KeyEvent = gST->ConIn->WaitForKey;
@@ -230,7 +224,6 @@ EFI_STATUS TestEventSingal()
 EFI_STATUS 
 testMouseSimple()
 {
-    EFI_STATUS  Status;
     EFI_SIMPLE_POINTER_PROTOCOL* mouse = 0;
     EFI_SIMPLE_POINTER_STATE     State;
     EFI_EVENT events[2]; // = {0, gST->ConIn->WaitForKey};
@@ -284,7 +277,6 @@ UefiMain(
         IN EFI_SYSTEM_TABLE     *SystemTable
 		)
 {
-    EFI_STATUS Status;
     //Status = testTimeOut();
     //Status = TestTimer(); 
     //Status = TestNotify();
