@@ -52,7 +52,7 @@ VOID testMouseSimple(IN EFI_EVENT Event, IN VOID *Context)
             State.LeftButton,
             State.RightButton
             );
-    } else{            
+    } else {            
         // 按’q’键退出
         if (Key.UnicodeChar == 'q') {
             Print(L"Key.UnicodeChar: %s", Key.UnicodeChar);
