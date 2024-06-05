@@ -179,7 +179,7 @@ EFI_STATUS TestEventSingal()
     //Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_CALLBACK, (EFI_EVENT_NOTIFY)myEventNoify30, (VOID *) &NotifyContext, &myEvent[1]);
     //Status = gBS->CreateEvent(EVT_NOTIFY_SIGNAL, TPL_NOTIFY, (EFI_EVENT_NOTIFY)TakeScreenShotNotify, (VOID *) &TakeScreenShotNotifyContext, &KeyEvent);
     Status = gBS->CreateEvent(EVT_TIMER, TPL_NOTIFY, (EFI_EVENT_NOTIFY)TimeNotify, (VOID *) &TimeNotifyContext, &TimeEvent);
-    Status = gBS->SetTimer(TimeEvent, TimerPeriodic, EFI_TIMER_PERIOD_MICROSECONDS(500));
+    Status = gBS->SetTimer(TimeEvent, TimerPeriodic, 10 * 1000 * 1000);
     //Status = gBS->CloseEvent(KeyEvent);
     //Status = gBS->CloseEvent(TimeEvent);
     if (EFI_ERROR(Status)) {
