@@ -151,7 +151,7 @@ VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
 {
     EFI_SIMPLE_POINTER_PROTOCOL* mouse = 0;
     EFI_STATUS   Status = 0;
-    UINTN        Index=0;
+    UINTN        Index = 0;
     EFI_INPUT_KEY  Key;
     EFI_EVENT events[2];
     // 将鼠标事件放到等待事件数组
