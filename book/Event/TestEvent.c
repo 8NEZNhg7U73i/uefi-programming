@@ -57,8 +57,8 @@ VOID testMouseSimple(IN EFI_EVENT Event, IN VOID *Context)
     {
         Status = gST->ConIn->ReadKeyStroke(gST->ConIn, &Key);
         // 按’q’键退出
-        Print(L"Key.UnicodeChar: %c", Key.UnicodeChar);
-        Print(L"Key.Scancode: %X", Key.ScanCode);
+        Print(L"Key.UnicodeChar: %c\n", Key.UnicodeChar);
+        Print(L"Key.Scancode: %X\n", Key.ScanCode);
     }
 }
 
