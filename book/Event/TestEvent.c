@@ -149,6 +149,7 @@ myEventNoify30 (
 
 VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
 {
+    EFI_SIMPLE_POINTER_PROTOCOL* mouse = 0;
     EFI_STATUS   Status = 0;
     UINTN        Index=0;
     EFI_INPUT_KEY  Key;
@@ -171,7 +172,6 @@ VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
 
 EFI_STATUS TestEventSingal()
 {
-    EFI_SIMPLE_POINTER_PROTOCOL* mouse = 0;
     EFI_STATUS Status;
     EFI_EVENT KeyEvent;
     EFI_EVENT TimeEvent;
