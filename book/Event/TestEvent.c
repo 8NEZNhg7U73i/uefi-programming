@@ -46,7 +46,7 @@ void WaitKey()
 {
     //EFI_EVENT KeyEvent;
 
-    UINTN        Index=0;
+    UINTN        Index;
     KeyEvent = gST->ConIn->WaitForKey;
 
     Status = gBS->WaitForEvent(1, KeyEvent, &Index);
