@@ -60,7 +60,7 @@ VOID testMouseSimple(IN EFI_EVENT Event, IN VOID *Context)
         Print(L"Key.UnicodeChar: %c\n", Key.UnicodeChar);
         Print(L"Key.Scancode: %X\n", Key.ScanCode);
     }
-    Print(L"index: %u", *index);
+    Print(L"index: %u", index);
 }
 
 /** example  
