@@ -45,8 +45,9 @@ void WaitKey()
     EFI_STATUS   Status = 0;
     UINTN        Index=0;
     EFI_INPUT_KEY  Key;
-
-    Status = gBS->WaitForEvent(1, &gST->ConIn->WaitForKey, &Index);
+    EFI_EVENT event;
+    event = gST->ConIn->WaitForKey;
+    Status = gBS->WaitForEvent(1, event, &Index);
     if (EFI_ERROR(Status)) {
         Print(L"WaitKey: WaitForEvent Error!\n");
     }
@@ -221,7 +222,7 @@ UefiMain(
 		)
 {
     EFI_STATUS Status;
-    Status = testTimeOut();
+//    Status = testTimeOut();
     Status = TestTimer(); 
     Status = TestNotify();
     Status = TestEventSingal();
