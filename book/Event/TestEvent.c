@@ -42,25 +42,27 @@ VOID testMouseSimple(IN EFI_EVENT Event, IN VOID *Context)
     // 等待events中的任一事件发生
     Status = gBS->WaitForEvent(2, events, &index);
     Print(L"WaitForEvent: %r\n", Status);
-    if (index == 0)
-    {
-        // 获取鼠标状态并输出
-        Status = mouse->GetState(mouse, &State);
-        Print(L"X:%d Y:%d Z:%d L:%d R:%d\n",
-              State.RelativeMovementX,
-              State.RelativeMovementY,
-              State.RelativeMovementZ,
-              State.LeftButton,
-              State.RightButton);
+    if (!Status == EFI_SUCCESS){
+        if (index == 0)
+        {
+            // 获取鼠标状态并输出
+            Status = mouse->GetState(mouse, &State);
+            Print(L"X:%d Y:%d Z:%d L:%d R:%d\n",
+                  State.RelativeMovementX,
+                  State.RelativeMovementY,
+                  State.RelativeMovementZ,
+                  State.LeftButton,
+                  State.RightButton);
+        }
+        else
+        {
+            Status = gST->ConIn->ReadKeyStroke(gST->ConIn, &Key);
+            // 按’q’键退出
+            Print(L"Key.UnicodeChar: %c\n", Key.UnicodeChar);
+            Print(L"Key.Scancode: %X\n", Key.ScanCode);
+        }
+        Print(L"index: %u", index);
     }
-    else
-    {
-        Status = gST->ConIn->ReadKeyStroke(gST->ConIn, &Key);
-        // 按’q’键退出
-        Print(L"Key.UnicodeChar: %c\n", Key.UnicodeChar);
-        Print(L"Key.Scancode: %X\n", Key.ScanCode);
-    }
-    Print(L"index: %u", index);
 }
 
 /** example  
