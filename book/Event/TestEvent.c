@@ -40,7 +40,7 @@ VOID testMouseSimple(IN EFI_EVENT Event, IN VOID *Context)
     EFI_INPUT_KEY Key;
     UINTN *index;
     // 等待events中的任一事件发生
-    Status = gBS->WaitForEvent(2, events, &index);
+    Status = gBS->WaitForEvent(2, events, index);
     Print(L"WaitForEvent: %r\n", Status);
     if (index == 0)
     {
