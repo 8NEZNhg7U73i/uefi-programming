@@ -150,7 +150,7 @@ myEventNoify30 (
 VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
 {
     EFI_STATUS   Status = 0;
-    //UINTN        Index=0;
+    UINTN        Index=0;
     EFI_INPUT_KEY  Key;
 
     Status = gBS->WaitForEvent(1, &(gST->ConIn->WaitForKey), &Index);
