@@ -14,6 +14,55 @@
 
 EFI_SIMPLE_TEXT_INPUT_PROTOCOL                      *SimpleInput;
 
+VOID testMouseSimple(IN EFI_EVENT Event, IN VOID *Context)
+{
+    EFI_STATUS  Status;
+    EFI_SIMPLE_POINTER_PROTOCOL* mouse = 0;
+    EFI_SIMPLE_POINTER_STATE     State;
+    EFI_EVENT events[2]; // = {0, gST->ConIn->WaitForKey};
+    //显示光标
+    gST->ConOut->EnableCursor (gST->ConOut, TRUE);
+    //找出鼠标设备
+    Status = gBS->LocateProtocol(
+            &gEfiSimplePointerProtocolGuid,
+            NULL,
+            (VOID**)&mouse
+            );
+    if (EFI_ERROR(Status)) {
+        Print(L"testMouseSimple: LocateProtocol error %r!\n", Status);
+    }
+    // 重置鼠标设备
+    Status = mouse->Reset(mouse, TRUE);
+    // 将鼠标事件放到等待事件数组
+    events[0] = mouse->WaitForInput;
+    // 将键盘事件放到等待数组
+    events[1] = gST->ConIn->WaitForKey;
+    while(1)
+    {
+        EFI_INPUT_KEY	   Key;
+        UINTN index;
+        // 等待events中的任一事件发生
+        Status = gBS->WaitForEvent(2, events, &index);
+        if(index == 0){
+            // 获取鼠标状态并输出
+            Status = mouse->GetState(mouse, &State);
+            Print(L"X:%d Y:%d Z:%d L:%d R:%d\n",
+                State.RelativeMovementX,
+                State.RelativeMovementY,
+                State.RelativeMovementZ,
+                State.LeftButton,
+                State.RightButton
+                );
+        } else{            
+            Status = gST->ConIn->ReadKeyStroke (gST->ConIn, &Key);
+            // 按’q’键退出
+            if (Key.UnicodeChar == 'q')
+                break;
+        }
+    }
+    return EFI_SUCCESS;
+}
+
 /** example  
  *
  */
@@ -183,7 +232,7 @@ EFI_STATUS TestEventSingal()
     // 生成Timer事件，并设置触发函数
     //Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_CALLBACK, (EFI_EVENT_NOTIFY)myEventNoify30, (VOID *) &NotifyContext, &myEvent[1]);
     //Status = gBS->CreateEvent(EVT_NOTIFY_SIGNAL, TPL_NOTIFY, (EFI_EVENT_NOTIFY)TakeScreenShotNotify, (VOID *) &TakeScreenShotNotifyContext, &KeyEvent);
-    Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_NOTIFY, (EFI_EVENT_NOTIFY)TimeNotify, (VOID *) TimeNotifyContext, &TimeEvent);
+    Status = gBS->CreateEvent(EVT_TIMER | EVT_NOTIFY_SIGNAL, TPL_NOTIFY, (EFI_EVENT_NOTIFY)testMouseSimple, (VOID *) TimeNotifyContext, &TimeEvent);
     Status = gBS->SetTimer(TimeEvent, TimerPeriodic, 10 * 1000 * 1000);
     //Status = gBS->CloseEvent(KeyEvent);
     //Status = gBS->CloseEvent(TimeEvent);
@@ -208,7 +257,7 @@ EFI_STATUS TestEventSingal()
  *
  */
 EFI_STATUS 
-testMouseSimple()
+testMouseSimple1()
 {
     EFI_STATUS  Status;
     EFI_SIMPLE_POINTER_PROTOCOL* mouse = 0;
