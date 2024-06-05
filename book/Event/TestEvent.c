@@ -53,16 +53,15 @@ VOID testMouseSimple(IN EFI_EVENT Event, IN VOID *Context)
             State.RightButton
             );
     } else{            
-    Status = gST->ConIn->ReadKeyStroke (gST->ConIn, &Key);
-    Print(L"WaitKey: ReadKeyStroke : %r\n", Status);
-    //EFI_STATUS Status;
-    Print(L"Context: %s\n", Context);
-    Print(L"index: %d\n", index);
-
         // 按’q’键退出
         if (Key.UnicodeChar == 'q')
             Print(L"Key.UnicodeChar: %s", Key.UnicodeChar);
     }
+    //EFI_STATUS Status;
+    Print(L"Context: %s\n", Context);
+    Print(L"index: %u\n", index);
+
+
 }
 
 /** example  
