@@ -52,7 +52,6 @@ EFI_STATUS testTimeOut()
  */
 void WaitKey()
 {
-    UINTN waitidx;
     //EFI_EVENT KeyEvent;
 
     UINTN        Index=0;
