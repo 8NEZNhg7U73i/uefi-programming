@@ -47,8 +47,9 @@ void WaitKey()
     //EFI_EVENT KeyEvent;
 
     UINTN        Index=0;
+    KeyEvent = gST->ConIn->WaitForKey;
 
-    Status = gBS->WaitForEvent(1, &(gST->ConIn->WaitForKey), &Index);
+    Status = gBS->WaitForEvent(1, KeyEvent, &Index);
     if (EFI_ERROR(Status)) {
         Print(L"WaitKey: WaitForEvent Error: %r\n", Status);
     }
@@ -201,7 +202,7 @@ EFI_STATUS TestEventSingal()
     {
         Print(L"TestEventSignal: SetTimer error %r!\n", Status);
     }
-    //WaitKey();
+    WaitKey();
     //Status = gBS->CloseEvent(myEvent);
     if (EFI_ERROR(Status)) {
         Print(L"TestEventSignal: CloseEvent error %r!\n", Status);
