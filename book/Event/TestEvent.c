@@ -14,15 +14,6 @@
 
 #include "TestEvent.h"
 
-EFI_SIMPLE_TEXT_INPUT_PROTOCOL                      *SimpleInput;
-
-EFI_INPUT_KEY Key;
-EFI_STATUS Status;
-UINTN waitidx;
-CHAR16 *KeyNotifyContext = L"TimeNotify!";
-EFI_EVENT KeyEvent;
-KeyEvent = gST->ConIn->WaitForKey;
-
 
 /** example  
  *
