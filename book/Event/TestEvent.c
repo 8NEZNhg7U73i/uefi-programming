@@ -156,7 +156,7 @@ VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
     }
     Print(L"Status: %r\n", Status);
     Print(L"Context: %s\n", Context);
-    Status = gBS->WaitForEvent(1, &KeyEvent, &waitidx);
+    Status = gBS->WaitForEvent(1, KeyEvent, &waitidx);
     Print(L"Status: %r\n", Status);
     Status = gBS->CheckEvent(&KeyEvent);
     Print(L"Status: %r\n", Status);
