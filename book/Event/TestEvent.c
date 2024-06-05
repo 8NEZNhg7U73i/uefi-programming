@@ -152,8 +152,10 @@ VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
     EFI_STATUS   Status = 0;
     UINTN        Index=0;
     EFI_INPUT_KEY  Key;
+    EFI_EVENT event;
+    event = gST->ConIn->WaitForKey;
 
-    Status = gBS->WaitForEvent(1, &(gST->ConIn->WaitForKey), &Index);
+    Status = gBS->WaitForEvent(1, &event, &Index);
     Print(L"WaitKey: WaitForEvent : %r\n", Status);
     Status = gST->ConIn->ReadKeyStroke (gST->ConIn, &Key);
     Print(L"WaitKey: ReadKeyStroke : %r\n", Status);
