@@ -153,7 +153,10 @@ VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
     UINTN        Index=0;
     EFI_INPUT_KEY  Key;
     EFI_EVENT events[2] = {0};
-    events[0] = gST->ConIn->WaitForKey;
+    // 将鼠标事件放到等待事件数组
+    events[0] = mouse->WaitForInput;
+    // 将键盘事件放到等待数组
+    events[1] = gST->ConIn->WaitForKey;
 
     Status = gBS->WaitForEvent(2, events, &Index);
     Print(L"WaitKey: WaitForEvent : %r\n", Status);
@@ -168,6 +171,7 @@ VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
 
 EFI_STATUS TestEventSingal()
 {
+    EFI_SIMPLE_POINTER_PROTOCOL* mouse = 0;
     EFI_STATUS Status;
     EFI_EVENT KeyEvent;
     EFI_EVENT TimeEvent;
