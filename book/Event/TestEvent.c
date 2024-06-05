@@ -164,7 +164,6 @@ VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
     //return EFI_SUCCESS;
 }
 
-#pragma optimize("", off)
 EFI_STATUS TestEventSingal()
 {
     EFI_STATUS Status;
@@ -172,7 +171,7 @@ EFI_STATUS TestEventSingal()
     EFI_EVENT TimeEvent;
     KeyEvent = gST->ConIn->WaitForKey;
     
-    CHAR16 TimeNotifyContext[64] = L"Hello! Time Out!";
+    CHAR16 *TimeNotifyContext = L"Hello! Time Out!";
     Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL\n");
 
     // 生成Timer事件，并设置触发函数
@@ -198,7 +197,6 @@ EFI_STATUS TestEventSingal()
     }
     return EFI_SUCCESS;
 }
-#pragma optimize("", on)
 
 /* examle 5
  *
