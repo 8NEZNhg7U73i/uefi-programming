@@ -16,19 +16,19 @@ EFI_SIMPLE_TEXT_INPUT_PROTOCOL                      *SimpleInput;
 
 VOID testMouseSimple(IN EFI_EVENT Event, IN VOID *Context)
 {
-    EFI_STATUS  Status;
-    EFI_SIMPLE_POINTER_PROTOCOL* mouse = 0;
-    EFI_SIMPLE_POINTER_STATE     State;
+    EFI_STATUS Status;
+    EFI_SIMPLE_POINTER_PROTOCOL *mouse = 0;
+    EFI_SIMPLE_POINTER_STATE State;
     EFI_EVENT events[2]; // = {0, gST->ConIn->WaitForKey};
-    //显示光标
-    gST->ConOut->EnableCursor (gST->ConOut, TRUE);
-    //找出鼠标设备
+    // 显示光标
+    gST->ConOut->EnableCursor(gST->ConOut, TRUE);
+    // 找出鼠标设备
     Status = gBS->LocateProtocol(
-            &gEfiSimplePointerProtocolGuid,
-            NULL,
-            (VOID**)&mouse
-            );
-    if (EFI_ERROR(Status)) {
+        &gEfiSimplePointerProtocolGuid,
+        NULL,
+        (VOID **)&mouse);
+    if (EFI_ERROR(Status))
+    {
         Print(L"testMouseSimple: LocateProtocol error %r!\n", Status);
     }
     // 重置鼠标设备
@@ -37,26 +37,29 @@ VOID testMouseSimple(IN EFI_EVENT Event, IN VOID *Context)
     events[0] = mouse->WaitForInput;
     // 将键盘事件放到等待数组
     events[1] = gST->ConIn->WaitForKey;
-    EFI_INPUT_KEY	   Key;
+    EFI_INPUT_KEY Key;
     UINTN index;
     // 等待events中的任一事件发生
     Status = gBS->WaitForEvent(2, events, &index);
-    Print(L"WaitForEvent: %r\n" ,Status);
-    if(index == 0){
+    Print(L"WaitForEvent: %r\n", Status);
+    if (index == 0)
+    {
         // 获取鼠标状态并输出
         Status = mouse->GetState(mouse, &State);
         Print(L"X:%d Y:%d Z:%d L:%d R:%d\n",
-            State.RelativeMovementX,
-            State.RelativeMovementY,
-            State.RelativeMovementZ,
-            State.LeftButton,
-            State.RightButton
-            );
-    } else{            
-        Status = gST->ConIn->ReadKeyStroke (gST->ConIn, &Key);
+              State.RelativeMovementX,
+              State.RelativeMovementY,
+              State.RelativeMovementZ,
+              State.LeftButton,
+              State.RightButton);
+    }
+    else
+    {
+        Status = gST->ConIn->ReadKeyStroke(gST->ConIn, &Key);
         // 按’q’键退出
         Print(L"Key.UnicodeChar: %c", Key.UnicodeChar);
         Print(L"Key.Scancode: %X", Key.ScanCode);
+    }
 }
 
 /** example  
