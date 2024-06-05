@@ -149,6 +149,8 @@ myEventNoify30 (
 VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
 {
     KeyEvent = gST->ConIn->WaitForKey;
+    Status = gBS->WaitForEvent(1, KeyEvent, &waitidx);
+    Print(L"Status: %r\n", Status);
     Status = gBS->CreateEvent(EVT_NOTIFY_SIGNAL, TPL_CALLBACK, (EFI_EVENT_NOTIFY)KeyNotify, (VOID *) KeyNotifyContext, &KeyEvent);
     if (!Status == EFI_SUCCESS) {
         Status = gBS->CloseEvent(KeyEvent);
