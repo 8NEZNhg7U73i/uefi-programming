@@ -18,7 +18,7 @@ VOID testMouseSimple(IN EFI_EVENT Event, IN VOID *Context)
 {
     EFI_STATUS  Status;
     EFI_SIMPLE_POINTER_PROTOCOL* mouse = 0;
-    //EFI_SIMPLE_POINTER_STATE     State;
+    EFI_SIMPLE_POINTER_STATE     State;
     EFI_EVENT events[2]; // = {0, gST->ConIn->WaitForKey};
     //显示光标
     gST->ConOut->EnableCursor (gST->ConOut, TRUE);
