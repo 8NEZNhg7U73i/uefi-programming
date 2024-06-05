@@ -52,7 +52,6 @@ EFI_STATUS testTimeOut()
  */
 void WaitKey()
 {
-    EFI_INPUT_KEY Key;
     UINTN waitidx;
     //EFI_EVENT KeyEvent;
 
@@ -178,7 +177,6 @@ VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
 
 VOID KeyNotify(IN EFI_EVENT Event, IN VOID *Context)
 {
-    EFI_INPUT_KEY Key;
     Status = gST->ConIn->ReadKeyStroke(gST->ConIn, &Key);
     Print(L"Unicode char: %s\n", Key.UnicodeChar);
     Print(L"Scan code: %d\n", Key.ScanCode);
@@ -246,7 +244,6 @@ testMouseSimple()
     events[1] = gST->ConIn->WaitForKey;
     while(1)
     {
-        EFI_INPUT_KEY	   Key;
         UINTN index;
         // 等待events中的任一事件发生
         Status = gBS->WaitForEvent(2, events, &index);
