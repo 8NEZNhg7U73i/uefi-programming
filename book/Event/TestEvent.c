@@ -55,7 +55,7 @@ VOID testMouseSimple(IN EFI_EVENT Event, IN VOID *Context)
         Status = gST->ConIn->ReadKeyStroke (gST->ConIn, &Key);
         // 按’q’键退出
         if (Key.UnicodeChar == 'q')
-            break;
+            Print(L"Key.UnicodeChar: %s", Key.UnicodeChar);
     }
 }
 
