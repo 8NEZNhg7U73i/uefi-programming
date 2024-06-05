@@ -149,6 +149,7 @@ myEventNoify30 (
 
 VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
 {
+    /*
     KeyEvent = gST->ConIn->WaitForKey;
     Status = gBS->WaitForEvent(1, KeyEvent, &waitidx);
     Print(L"Status: %r\n", Status);
@@ -164,7 +165,8 @@ VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
     Status = gBS->CheckEvent(&KeyEvent);
     Print(L"Status: %r\n", Status);
     Status = gST->ConIn->ReadKeyStroke(gST->ConIn, &Key);
-    //WaitKey();
+    */
+    WaitKey();
     //Print(L"Unicode char: %s\n", Key.UnicodeChar);
     //Print(L"Scan code: %d\n", Key.ScanCode);
     //return EFI_SUCCESS;
@@ -202,7 +204,7 @@ EFI_STATUS TestEventSingal()
     {
         Print(L"TestEventSignal: SetTimer error %r!\n", Status);
     }
-    WaitKey();
+    //WaitKey();
     //Status = gBS->CloseEvent(myEvent);
     if (EFI_ERROR(Status)) {
         Print(L"TestEventSignal: CloseEvent error %r!\n", Status);
