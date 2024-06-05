@@ -54,8 +54,9 @@ VOID testMouseSimple(IN EFI_EVENT Event, IN VOID *Context)
             );
     } else{            
         // 按’q’键退出
-        if (Key.UnicodeChar == 'q')
+        if (Key.UnicodeChar == 'q') {
             Print(L"Key.UnicodeChar: %s", Key.UnicodeChar);
+        }
     }
     //EFI_STATUS Status;
     Print(L"Context: %s\n", Context);
