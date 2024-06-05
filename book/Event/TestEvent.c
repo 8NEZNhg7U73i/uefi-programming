@@ -20,7 +20,6 @@ VOID testMouseSimple(IN EFI_EVENT Event, IN VOID *Context)
     EFI_SIMPLE_POINTER_PROTOCOL* mouse = 0;
     EFI_SIMPLE_POINTER_STATE     State;
     EFI_EVENT events[2]; // = {0, gST->ConIn->WaitForKey};
-    EFI_INPUT_KEY     Key;
     //显示光标
     gST->ConOut->EnableCursor (gST->ConOut, TRUE);
     //找出鼠标设备
@@ -42,6 +41,7 @@ VOID testMouseSimple(IN EFI_EVENT Event, IN VOID *Context)
     // 等待events中的任一事件发生
     Status = gBS->WaitForEvent(2, events, &index);
     Print(L"WaitKey: WaitForEvent : %r\n", Status);
+    EFI_INPUT_KEY     Key;
     Status = gST->ConIn->ReadKeyStroke (gST->ConIn, &Key);
     Print(L"ReadKeyStroke: %r\n", Status);
     if(index == 0){
