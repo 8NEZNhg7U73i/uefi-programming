@@ -141,7 +141,6 @@ myEventNoify30 (
     Print(L"Unicode char: %s\n", Key.UnicodeChar);
     Print(L"Scan code: %d\n", Key.ScanCode);
     Print(L"ReadKey: %r\n", Status);
-    Print(L"")
     static UINTN times = 0;
     Print(L"%s\nmyEventNotif signal%d\n", Context, times);
     Print(L"Context: %s\nsignal: %d\n", Context, times);
