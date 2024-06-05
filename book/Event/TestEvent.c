@@ -41,6 +41,7 @@ VOID testMouseSimple(IN EFI_EVENT Event, IN VOID *Context)
     UINTN index;
     // 等待events中的任一事件发生
     Status = gBS->WaitForEvent(2, events, &index);
+    Print(L"WaitForEvent: %r\n" ,Status);
     if(index == 0){
         // 获取鼠标状态并输出
         Status = mouse->GetState(mouse, &State);
@@ -54,9 +55,8 @@ VOID testMouseSimple(IN EFI_EVENT Event, IN VOID *Context)
     } else{            
         Status = gST->ConIn->ReadKeyStroke (gST->ConIn, &Key);
         // 按’q’键退出
-        if (Key.UnicodeChar == 'q')
-            Print(L"Key.UnicodeChar: %s", Key.UnicodeChar);
-    }
+        Print(L"Key.UnicodeChar: %c", Key.UnicodeChar);
+        Print(L"Key.Scancode: %X", Key.Scancode);
 }
 
 /** example  
