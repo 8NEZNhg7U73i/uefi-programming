@@ -9,5 +9,5 @@ EFI_STATUS Status;
 UINTN waitidx;
 CHAR16 *KeyNotifyContext = L"TimeNotify!";
 EFI_EVENT KeyEvent;
-EFI_EVENT KeyEvent = gST->ConIn->WaitForKey;
+CONST EFI_EVENT KeyEvent = gST->ConIn->WaitForKey;
 
