@@ -149,7 +149,7 @@ myEventNoify30 (
 
 VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
 {
-    EFI_STATUS   Status;
+    EFI_STATUS   Status = 0;
     //UINTN        Index=0;
     EFI_INPUT_KEY  Key;
 
