@@ -45,7 +45,7 @@ VOID testMouseSimple(IN EFI_EVENT Event, IN VOID *Context)
     //if (Status == EFI_SUCCESS){
         if (index == 0)
         {
-            Print(L"index: %u\n", index);
+            Print(L"index: 0\n");
             // 获取鼠标状态并输出
             Status = mouse->GetState(mouse, &State);
             Print(L"X:%d Y:%d Z:%d L:%d R:%d\n",
@@ -57,7 +57,7 @@ VOID testMouseSimple(IN EFI_EVENT Event, IN VOID *Context)
         }
         else if (index == 1)
         {
-            Print(L"index: %u\n", index);
+            Print(L"index: 1\n");
             Status = gST->ConIn->ReadKeyStroke(gST->ConIn, &Key);
             // 按’q’键退出
             Print(L"Key.UnicodeChar: %c\n", Key.UnicodeChar);
