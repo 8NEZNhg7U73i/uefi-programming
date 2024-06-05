@@ -19,9 +19,8 @@ EFI_SIMPLE_TEXT_INPUT_PROTOCOL                      *SimpleInput;
 EFI_INPUT_KEY Key;
 EFI_STATUS Status;
 UINTN waitidx;
-EFI_EVENT KeyEvent;
 CHAR16 *KeyNotifyContext = L"TimeNotify!";
-KeyEvent = gST->ConIn->WaitForKey;
+EFI_EVENT KeyEvent = gST->ConIn->WaitForKey;
 
 
 /** example  
