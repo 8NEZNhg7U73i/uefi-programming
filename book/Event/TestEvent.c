@@ -183,7 +183,7 @@ EFI_STATUS TestEventSingal()
 {
     EFI_EVENT TimeEvent;
     KeyEvent = gST->ConIn->WaitForKey;
-    EFI_EVENT emptyevent = gST->ConIn->WaitForKey;
+    //EFI_EVENT emptyevent = gST->ConIn->WaitForKey;
     CHAR16 *TimeNotifyContext = L"Hello! Time Out!";
     Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL\n");
 
