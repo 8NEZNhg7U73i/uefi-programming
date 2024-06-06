@@ -61,7 +61,7 @@ void WaitKey(IN EFI_EVENT Event, IN VOID *Context)
     Status = gST->ConIn->ReadKeyStroke(gST->ConIn, &Key);
     */
     Print(L"Unicode char: %c\n", Key.UnicodeChar);
-    Print(L"Scan code: %d\n", Key.ScanCode);
+    Print(L"Scan code: %X\n", Key.ScanCode);
 }
 
 /** example 2
