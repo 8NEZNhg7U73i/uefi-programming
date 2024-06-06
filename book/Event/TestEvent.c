@@ -42,7 +42,7 @@ EFI_STATUS testTimeOut()
 /** example 1
  *
  */
-void WaitKey()
+void WaitKey(IN EFI_EVENT Event, IN VOID *Context)
 {
     //EFI_EVENT KeyEvent;
 
@@ -118,7 +118,7 @@ VOID myEventNoify (
         gBS->SignalEvent(Event);
 }
 
-EFI_STATUS TestNotify()
+EFI_STATUS TestNotify(IN EFI_EVENT Event, IN VOID *Context)
 {
     UINTN       index=0;
     EFI_EVENT myEvent;
