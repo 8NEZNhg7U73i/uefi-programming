@@ -48,7 +48,7 @@ void WaitKey(IN EFI_EVENT Event, IN VOID *Context)
 
     UINTN        Index;
     KeyEvent = gST->ConIn->WaitForKey;
-
+    gBS->RaiseTPL((EFI_TPL) TPL_APPLICATION);
     Status = gBS->WaitForEvent(1, &KeyEvent, &Index);
     Print(L"WaitKey: WaitForEvent: %r\n", Status);
     Status = gST->ConIn->ReadKeyStroke (gST->ConIn, &Key);
