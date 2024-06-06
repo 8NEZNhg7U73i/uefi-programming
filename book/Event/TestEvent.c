@@ -185,7 +185,7 @@ EFI_STATUS TestEventSingal()
 {
     EFI_EVENT TimeEvent;
     KeyEvent = gST->ConIn->WaitForKey;
-    
+    EFI_EVENT emptyevent;
     CHAR16 *TimeNotifyContext = L"Hello! Time Out!";
     Print(L"Test EVT_TIMER | EVT_NOTIFY_SIGNAL\n");
 
@@ -206,7 +206,7 @@ EFI_STATUS TestEventSingal()
     {
         Print(L"TestEventSignal: SetTimer error %r!\n", Status);
     }
-    WaitKey();
+    WaitKey(emptyevent,(VOID *) TimeNotifyContext);
     //Status = gBS->CloseEvent(myEvent);
     if (EFI_ERROR(Status)) {
         Print(L"TestEventSignal: CloseEvent error %r!\n", Status);
