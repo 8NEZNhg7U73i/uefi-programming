@@ -171,7 +171,8 @@ VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
     //WaitKey();
     //Print(L"Unicode char: %s\n", Key.UnicodeChar);
     //Print(L"Scan code: %d\n", Key.ScanCode);
-    return EFI_SUCCESS;
+    //return EFI_SUCCESS;
+    VOID *null = NULL;
 }
 
 VOID KeyNotify(IN EFI_EVENT Event, IN VOID *Context)
