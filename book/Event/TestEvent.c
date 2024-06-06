@@ -40,7 +40,7 @@ EFI_STATUS testTimeOut()
 /** example 1
  *
  */
-void WaitKey()
+void WaitKey(IN EFI_EVENT Event, IN VOID *Context)
 {
     EFI_STATUS   Status = 0;
     UINTN        Index=0;
