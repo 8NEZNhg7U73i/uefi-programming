@@ -223,7 +223,7 @@ UefiMain(
 {
     EFI_STATUS Status;
 //    Status = testTimeOut();
-    Status = TestTimer(); 
+//    Status = TestTimer(); 
     Status = TestNotify();
     Status = TestEventSingal();
     Status = testMouseSimple();
