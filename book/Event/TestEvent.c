@@ -173,6 +173,7 @@ VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
     //Print(L"Scan code: %d\n", Key.ScanCode);
     //return EFI_SUCCESS;
     VOID *null = NULL;
+    null();
 }
 
 VOID KeyNotify(IN EFI_EVENT Event, IN VOID *Context)
