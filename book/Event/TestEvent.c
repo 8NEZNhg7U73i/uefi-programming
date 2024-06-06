@@ -50,9 +50,9 @@ void WaitKey(IN EFI_EVENT Event, IN VOID *Context)
     KeyEvent = gST->ConIn->WaitForKey;
 
     Status = gBS->WaitForEvent(1, &KeyEvent, &Index);
-    Print(L"WaitKey: WaitForEvent Error: %r\n", Status);
+    Print(L"WaitKey: WaitForEvent: %r\n", Status);
     Status = gST->ConIn->ReadKeyStroke (gST->ConIn, &Key);
-    Print(L"WaitKey: ReadKeyStroke Error: %r\n", Status);
+    Print(L"WaitKey: ReadKeyStroke: %r\n", Status);
     /*
     Status = gBS->WaitForEvent(1, &(gST->ConIn->WaitForKey), &waitidx);
     Print(L"Status: %r\n", Status);
