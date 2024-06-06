@@ -204,7 +204,7 @@ EFI_STATUS TestEventSingal()
     {
         Print(L"TestEventSignal: SetTimer error %r!\n", Status);
     }
-    WaitKey(emptyevent,(VOID *) TimeNotifyContext);
+    //WaitKey(emptyevent,(VOID *) TimeNotifyContext);
     //Status = gBS->CloseEvent(myEvent);
     if (EFI_ERROR(Status)) {
         Print(L"TestEventSignal: CloseEvent error %r!\n", Status);
