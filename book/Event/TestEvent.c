@@ -168,10 +168,10 @@ VOID TimeNotify(IN EFI_EVENT Event, IN VOID *Context)
     Print(L"Status: %r\n", Status);
     Status = gST->ConIn->ReadKeyStroke(gST->ConIn, &Key);
     */
-    WaitKey();
+    //WaitKey();
     //Print(L"Unicode char: %s\n", Key.UnicodeChar);
     //Print(L"Scan code: %d\n", Key.ScanCode);
-    //return EFI_SUCCESS;
+    return EFI_SUCCESS;
 }
 
 VOID KeyNotify(IN EFI_EVENT Event, IN VOID *Context)
