@@ -14,7 +14,7 @@
 
 EFI_STATUS PrintNode(EFI_DEVICE_PATH_PROTOCOL * Node)
 {
-    Print(L"(%d %d)/", Node->Type, Node->SubType);
+    Print(L"(%d:%d length:%d %d)/", Node->Type, Node->SubType, Node->Length[0], Node->Length[1]);
     return 0;
 }
 
