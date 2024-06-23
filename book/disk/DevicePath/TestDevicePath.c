@@ -47,18 +47,26 @@ EFI_STATUS EFIAPI UefiMain(IN EFI_HANDLE ImageHandle,
             NULL,
             (VOID**)&Device2TextProtocol
             );
-
+/*
     Status = gBS->LocateHandleBuffer(
             ByProtocol,
             &gEfiDiskIoProtocolGuid,
             NULL,
             &NumHandles,
             &ControllerHandle);
+*/
+    Status = gBS->LocateHandleBuffer(
+        AllHandles,
+        NULL,
+        NULL,
+        &NumHandles,
+        &ControllerHandle);
 
     if (EFI_ERROR(Status)) {
         return Status;
     } 
     for (HandleIndex = 0; HandleIndex < NumHandles; HandleIndex++) {
+        /*
         EFI_DEVICE_PATH_PROTOCOL* DiskDevicePath;   
         Status = gBS->OpenProtocol(
                 ControllerHandle[HandleIndex],
@@ -71,6 +79,7 @@ EFI_STATUS EFIAPI UefiMain(IN EFI_HANDLE ImageHandle,
         if (EFI_ERROR(Status)) {
             continue;
         } 
+        */
 
         {                             
             CHAR16*                TextDevicePath = 0;
