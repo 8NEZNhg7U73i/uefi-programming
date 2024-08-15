@@ -42,28 +42,35 @@ EFI_STATUS EFIAPI UefiMain(IN EFI_HANDLE ImageHandle,
     EFI_HANDLE *ControllerHandle = NULL;
     EFI_DEVICE_PATH_TO_TEXT_PROTOCOL* Device2TextProtocol = 0;
 
+/*
     Status = gBS->LocateProtocol(
             &gEfiDevicePathToTextProtocolGuid,
             NULL,
             (VOID**)&Device2TextProtocol
             );
-
     Status = gBS->LocateHandleBuffer(
             ByProtocol,
             &gEfiDiskIoProtocolGuid,
             NULL,
             &NumHandles,
             &ControllerHandle);
+*/
+    Status = gBS->LocateHandleBuffer(
+        AllHandles,
+        NULL,
+        NULL,
+        &NumHandles,
+        &ControllerHandle);
 
     if (EFI_ERROR(Status)) {
         return Status;
     } 
     for (HandleIndex = 0; HandleIndex < NumHandles; HandleIndex++) {
-        EFI_DEVICE_PATH_PROTOCOL* DiskDevicePath;   
+        EFI_DEVICE_PATH_PROTOCOL* DevicePath;   
         Status = gBS->OpenProtocol(
                 ControllerHandle[HandleIndex],
                 &gEfiDevicePathProtocolGuid, 
-                (VOID**)&DiskDevicePath,
+                (VOID**)&DevicePath,
                 gImageHandle,
                 NULL,
                 EFI_OPEN_PROTOCOL_GET_PROTOCOL
@@ -74,12 +81,12 @@ EFI_STATUS EFIAPI UefiMain(IN EFI_HANDLE ImageHandle,
 
         {                             
             CHAR16*                TextDevicePath = 0;
-            TextDevicePath = Device2TextProtocol->ConvertDevicePathToText(DiskDevicePath, FALSE, TRUE); 
+            TextDevicePath = ConvertDevicePathToText(DevicePath, FALSE, TRUE); 
             Print(L"%s\n", TextDevicePath);
             if(TextDevicePath)gBS->FreePool(TextDevicePath);
         }
 
-        WalkthroughDevicePath(DiskDevicePath,PrintNode); 
+        WalkthroughDevicePath(DevicePath,PrintNode); 
         Print(L"\n\n");
     }
     return 0;
