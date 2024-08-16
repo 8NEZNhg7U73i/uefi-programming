@@ -60,3 +60,13 @@
 
 [Depex]
   gEfiSimpleTextInProtocolGuid
+
+[BuildOptions.IA32]
+RELEASE_*_IA32_CC_FLAGS  = /FAcs /D_UEFI /Od
+DEBUG_*_IA32_CC_FLAGS    = /FAcs /D_UEFI /Od
+NOOPT_*_IA32_CC_FLAGS    = /FAcs /D_UEFI /Od
+
+[BuildOptions.X64]
+RELEASE_*_X64_CC_FLAGS    =  /D_UEFI /Od
+DEBUG_*_X64_CC_FLAGS    = /D_UEFI /Od
+NOOPT_*_X64_CC_FLAGS    = /D_UEFI /Od
