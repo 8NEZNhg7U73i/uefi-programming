@@ -4,6 +4,7 @@
 #include <Library/UefiLib.h>
 
 
+#pragma optimize( "", off )
 EFI_STATUS Status;
 EFI_SIMPLE_TEXT_INPUT_PROTOCOL                      *SimpleInput;
 int count = 0;
@@ -75,3 +76,4 @@ UefiMain(
   //Status = gBS->CloseEvent(SimpleInput->WaitForKey);
 
 }
+#pragma optimize( "", on )
