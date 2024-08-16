@@ -11,6 +11,7 @@
 #include <Protocol/SimplePointer.h>
 #include <Protocol/AbsolutePointer.h>
 #include <Protocol/SimpleTextInEx.h>
+#pragma optimize( "", off )
 
 EFI_SIMPLE_TEXT_INPUT_PROTOCOL                      *SimpleInput;
 
@@ -239,3 +240,4 @@ UefiMain(
     //Status = TestSignal;
 	return Status;
 }
+#pragma optimize( "", on )
