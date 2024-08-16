@@ -12,6 +12,8 @@
 #include <Uefi/UefiGpt.h>
 #include <Library/DevicePathLib.h>
 
+#pragma optimize( "", off )
+
 EFI_STATUS PrintNode(EFI_DEVICE_PATH_PROTOCOL * Node)
 {
     Print(L"(%d %d)/", Node->Type, Node->SubType);
@@ -91,3 +93,4 @@ EFI_STATUS EFIAPI UefiMain(IN EFI_HANDLE ImageHandle,
     }
     return 0;
 }
+#pragma optimize( "", on )
