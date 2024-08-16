@@ -138,8 +138,8 @@ myEventNoify30 (
     times ++;
 }
 
-EFI_STATUS TestEventSingal()
 #pragma optimize("", off)
+EFI_STATUS TestEventSingal()
 {
     EFI_STATUS Status;
     EFI_EVENT myEvent[2]={0};
@@ -166,8 +166,8 @@ EFI_STATUS TestEventSingal()
     }
     return EFI_SUCCESS;
 }
-
 #pragma optimize("", on)
+
 /* examle 5
  *
  */
