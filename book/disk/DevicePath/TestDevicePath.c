@@ -40,7 +40,7 @@ EFI_STATUS EFIAPI UefiMain(IN EFI_HANDLE ImageHandle,
     EFI_STATUS Status;
     UINTN HandleIndex, NumHandles;
     EFI_HANDLE *ControllerHandle = NULL;
-    EFI_DEVICE_PATH_TO_TEXT_PROTOCOL* Device2TextProtocol = 0;
+    //EFI_DEVICE_PATH_TO_TEXT_PROTOCOL* Device2TextProtocol = 0;
 
 /*
     Status = gBS->LocateProtocol(
