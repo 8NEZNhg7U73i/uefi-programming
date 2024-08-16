@@ -1,5 +1,3 @@
-#pragma optimize( "", off )
-
 #include <Uefi.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/UefiLib.h>
