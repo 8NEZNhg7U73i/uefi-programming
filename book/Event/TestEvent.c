@@ -1,4 +1,3 @@
-#pragma optimize("", off)
 #include <Uefi.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/UefiLib.h>
@@ -238,4 +237,3 @@ UefiMain(
     //Status = TestSignal;
 	return Status;
 }
-#pragma optimize("", on)
